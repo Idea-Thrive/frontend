@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from 'react';
 import {
   ChakraProvider,
   Box,
@@ -7,10 +7,10 @@ import {
   VStack,
   Code,
   Grid,
-  theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+} from '@chakra-ui/react';
+import { ColorModeSwitcher } from './ColorModeSwitcher';
+import { Logo } from './Logo';
+import theme from './theme';
 
 export const App = () => (
   <ChakraProvider theme={theme}>
@@ -35,4 +35,4 @@ export const App = () => (
       </Grid>
     </Box>
   </ChakraProvider>
-)
+);

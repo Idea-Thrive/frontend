@@ -10,8 +10,8 @@ function hasItem(key: string): boolean {
   return Boolean(localStorage.getItem(key));
 }
 
-function remoteItem(key: string): void {
+function removeItem(key: string): void {
   localStorage.removeItem(key);
 }
 
-export { getItem, setItem, hasItem, remoteItem };
+export { getItem, setItem, hasItem, removeItem };

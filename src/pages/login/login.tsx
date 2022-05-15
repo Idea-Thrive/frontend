@@ -57,7 +57,12 @@ function Login() {
         pointerEvents="none"
       />
 
-      <VStack w="full" spacing={8} flexBasis={{ base: '100%', lg: '50%' }}>
+      <VStack
+        w="full"
+        spacing={5}
+        flexBasis={{ base: '100%', lg: '50%' }}
+        maxW={500}
+      >
         <Heading letterSpacing={3}>Idea Thrive</Heading>
 
         <Text>Welcome to Idea Thrive</Text>

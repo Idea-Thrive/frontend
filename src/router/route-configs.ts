@@ -1,30 +1,31 @@
 import { FC } from 'react';
 import paths from './paths';
-import Login from '../pages/login/login';
-import Home from '../pages/home/home';
+import Login from '../pages/login';
+import Home from '../pages/home';
+import { Middleware, needsAuth, noAuthNeeded } from './middleware';
 
 export type Route = {
   path: string;
-  element: FC;
+  component: FC;
   exact?: boolean;
-  isProtected: boolean;
+  middleware: Array<Middleware>;
 };
 
 const routes: Array<Route> = [
   {
     path: paths.login,
-    element: Login,
-    isProtected: false,
+    component: Login,
+    middleware: [noAuthNeeded],
   },
   {
     path: paths.home,
-    element: Home,
-    isProtected: true,
+    component: Home,
+    middleware: [needsAuth],
   },
   {
     path: '*',
-    element: Home,
-    isProtected: true,
+    component: Home,
+    middleware: [needsAuth],
   },
 ];
 

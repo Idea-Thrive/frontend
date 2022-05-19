@@ -1,8 +1,4 @@
-import React, { useEffect } from 'react';
-import { hasToken } from 'service/auth';
-import { useNavigate } from 'react-router-dom';
-import { setItem } from '../../utils/storage';
-import storageKeys from '../../service/storage';
+import React from 'react';
 import IdeaLogo from '../../assets/idea.svg';
 import { ColorModeSwitcher } from 'service/color-mode-switcher';
 import {
@@ -22,12 +18,6 @@ import {
 
 function Login() {
   const { toggleColorMode } = useColorMode();
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (hasToken()) {
-      navigate('/home', { replace: true });
-    }
-  }, []);
 
   const handleToggleThemeClick = () => {
     toggleColorMode();

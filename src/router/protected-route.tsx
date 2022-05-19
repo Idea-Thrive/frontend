@@ -1,21 +1,36 @@
 import { FC } from 'react';
-import { hasToken } from '../service/auth';
 import { Navigate } from 'react-router-dom';
+import { Middleware, Action } from './middleware';
 
 type ProtectedPathProps = {
-  redirectPath?: string;
+  middleware: Array<Middleware>;
 };
 
-const ProtectedRoute: FC<ProtectedPathProps> = ({ redirectPath, children }) => {
-  if (hasToken() === false) {
-    return <Navigate to={redirectPath!} />;
+const ProtectedRoute: FC<ProtectedPathProps> = (props) => {
+  const { middleware, children } = props;
+
+  let finalProps = props;
+
+  for (let i = 0; i < middleware.length; i++) {
+    const currentMiddleware = middleware[i];
+
+    const routingResponse = currentMiddleware(finalProps);
+
+    if (routingResponse.action === Action.PASS) {
+      finalProps = routingResponse.data || finalProps;
+    }
+
+    if (routingResponse.action === Action.REDIRECT) {
+      const { redirectPath } = routingResponse.data;
+      return <Navigate to={redirectPath} />;
+    }
   }
 
   return <>{children}</>;
 };
 
 ProtectedRoute.defaultProps = {
-  redirectPath: '/login',
+  middleware: [],
 };
 
 export default ProtectedRoute;

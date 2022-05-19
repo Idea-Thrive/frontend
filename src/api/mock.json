@@ -1,0 +1,10 @@
+{
+  "login": {
+    "ok": true,
+    "error": null,
+    "data": {
+      "token": "test",
+      "role": "1"
+    }
+  }
+}

@@ -16,6 +16,7 @@ import {
   AspectRatio,
 } from '@chakra-ui/react';
 import t, { toggleLocale } from '../../i18n';
+import { login } from '../../service/api-helper/login';
 
 function Login() {
   const { toggleColorMode } = useColorMode();
@@ -24,8 +25,10 @@ function Login() {
     toggleLocale();
   };
 
-  const handleLoginClick = () => {
+  const handleLoginClick = async () => {
     console.log('login');
+    const response = await login({ username: 'amir', password: 'test' });
+    console.log({ response });
   };
 
   return (

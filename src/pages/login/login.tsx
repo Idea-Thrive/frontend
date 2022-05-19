@@ -15,16 +15,17 @@ import {
   useColorMode,
   AspectRatio,
 } from '@chakra-ui/react';
+import t, { toggleLocale } from '../../i18n';
 
 function Login() {
   const { toggleColorMode } = useColorMode();
 
-  const handleToggleThemeClick = () => {
-    toggleColorMode();
+  const handleChangeLanguageClick = () => {
+    toggleLocale();
   };
 
-  const handleSignInClick = () => {
-    console.log('sign in');
+  const handleLoginClick = () => {
+    console.log('login');
   };
 
   return (
@@ -36,6 +37,34 @@ function Login() {
       justifyContent="space-around"
       alignItems="center"
     >
+      <VStack
+        w="full"
+        spacing={5}
+        flexBasis={{ base: '100%', lg: '50%' }}
+        maxW={500}
+      >
+        <Heading letterSpacing={3}>Idea Thrive</Heading>
+
+        <Text>{t('welcomeMessage')}</Text>
+
+        <FormControl>
+          <FormLabel>{t('email')}</FormLabel>
+          <Input dir="ltr" placeholder="example@gmail.com" />
+        </FormControl>
+
+        <FormControl>
+          <FormLabel>{t('password')}</FormLabel>
+          <Input dir="ltr" placeholder="Password" type="password" />
+        </FormControl>
+
+        <Button onClick={handleLoginClick}>{t('login')}</Button>
+        <Button onClick={handleChangeLanguageClick}>
+          {t('changeLanguage')}
+        </Button>
+
+        <ColorModeSwitcher />
+      </VStack>
+
       <Image
         display={{ base: 'none', lg: 'block' }}
         h="auto"
@@ -46,30 +75,6 @@ function Login() {
         userSelect="none"
         pointerEvents="none"
       />
-
-      <VStack
-        w="full"
-        spacing={5}
-        flexBasis={{ base: '100%', lg: '50%' }}
-        maxW={500}
-      >
-        <Heading letterSpacing={3}>Idea Thrive</Heading>
-
-        <Text>Welcome to Idea Thrive</Text>
-
-        <FormControl>
-          <FormLabel>Email</FormLabel>
-          <Input placeholder="example@gmail.com" />
-        </FormControl>
-
-        <FormControl>
-          <FormLabel>Password</FormLabel>
-          <Input placeholder="Password" type="password" />
-        </FormControl>
-
-        <Button onClick={handleSignInClick}>Sign In</Button>
-        <Button onClick={handleToggleThemeClick}>Toggle theme</Button>
-      </VStack>
     </Flex>
   );
 }

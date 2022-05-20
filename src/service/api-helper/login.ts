@@ -1,4 +1,4 @@
-import { post, get } from '../request';
+import request from '../request';
 
 type LoginParams = {
   username: string;
@@ -6,5 +6,5 @@ type LoginParams = {
 };
 
 export function login({ username, password }: LoginParams): Promise<any> {
-  return get('api/login', { username, password });
+  return request.get('api/login', { params: { username, password } });
 }

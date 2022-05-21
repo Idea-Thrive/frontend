@@ -37,15 +37,10 @@ function Login() {
       py={{ sm: 0, md: 20 }}
       h="full"
       width="full"
-      justifyContent="space-around"
+      justifyContent="center"
       alignItems="center"
     >
-      <VStack
-        w="full"
-        spacing={5}
-        flexBasis={{ base: '100%', lg: '50%' }}
-        maxW={500}
-      >
+      <VStack w="full" spacing={5} maxW={500}>
         <Heading letterSpacing={3}>Idea Thrive</Heading>
 
         <Text>{t('welcomeMessage')}</Text>
@@ -68,16 +63,18 @@ function Login() {
         <ColorModeSwitcher />
       </VStack>
 
-      <Image
-        display={{ base: 'none', lg: 'block' }}
-        h="auto"
-        maxW={500}
-        mx={5}
-        src={IdeaLogo}
-        w="full"
-        userSelect="none"
-        pointerEvents="none"
-      />
+      <Box>
+        <Image
+          display={{ base: 'none', lg: 'block' }}
+          h="auto"
+          maxW={500}
+          mx={5}
+          src={IdeaLogo}
+          w="100%"
+          userSelect="none"
+          pointerEvents="none"
+        />
+      </Box>
     </Flex>
   );
 }

@@ -1,5 +1,5 @@
-import React from 'react';
-import IdeaLogo from '../../assets/idea.svg';
+import React, { ChangeEvent } from 'react';
+import IdeaLogo from 'assets/idea.svg';
 import { ColorModeSwitcher } from 'service/color-mode-switcher';
 import {
   Flex,
@@ -12,14 +12,14 @@ import {
   FormLabel,
   Button,
   Box,
-  useColorMode,
-  AspectRatio,
 } from '@chakra-ui/react';
-import t, { toggleLocale } from '../../i18n';
-import { login } from '../../service/api-helper/login';
+import t, { toggleLocale } from 'i18n';
+import { login } from 'service/api-helper/login';
+import useInput from 'hooks/use-input';
 
 function Login() {
-  const { toggleColorMode } = useColorMode();
+  const emailInput = useInput('');
+  const passwordInput = useInput('');
 
   const handleChangeLanguageClick = () => {
     toggleLocale();
@@ -47,12 +47,24 @@ function Login() {
 
         <FormControl>
           <FormLabel>{t('email')}</FormLabel>
-          <Input dir="ltr" placeholder="example@gmail.com" />
+          <Input
+            type="email"
+            dir="ltr"
+            placeholder="example@gmail.com"
+            name="email"
+            {...emailInput}
+          />
         </FormControl>
 
         <FormControl>
           <FormLabel>{t('password')}</FormLabel>
-          <Input dir="ltr" placeholder="Password" type="password" />
+          <Input
+            dir="ltr"
+            placeholder="Password"
+            type="password"
+            name="password"
+            {...passwordInput}
+          />
         </FormControl>
 
         <Button onClick={handleLoginClick}>{t('login')}</Button>

@@ -18,8 +18,16 @@ import t, { toggleLocale } from 'i18n';
 import { login } from 'service/api-helper/login';
 import useInput from 'hooks/use-input';
 import { isEmail, isRequired } from 'utils/validate';
+import { useDispatch } from 'react-redux';
+import { updateUserRole } from 'store/slices/app-slice';
+import { setToken } from 'service/auth';
+import { useNavigate } from 'react-router-dom';
+import paths from 'router/paths';
 
 function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const emailInput = useInput({
     initialValue: '',
     validator: isEmail,
@@ -46,8 +54,16 @@ function Login() {
       return;
     }
 
-    const response = await login({ username: 'amir', password: 'test' });
-    console.log({ response });
+    const {
+      data: { ok, data },
+    } = await login({ username: 'amir', password: 'test' });
+    console.log(ok, data);
+    if (ok) {
+      const { role, token } = data;
+      setToken(token);
+      dispatch(updateUserRole(role));
+      navigate(paths.home);
+    }
   };
 
   return (

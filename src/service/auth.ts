@@ -1,12 +1,16 @@
 import storageKeys from '../service/storage';
-import { hasItem, removeItem } from '../utils/storage';
+import { hasItem, removeItem, setItem } from '../utils/storage';
 
 function hasToken(): boolean {
   return hasItem(storageKeys.token);
 }
 
-function removeToken(key: string): void {
-  removeItem(key);
+function removeToken(): void {
+  removeItem(storageKeys.token);
 }
 
-export { hasToken, removeToken };
+function setToken(token: string): void {
+  setItem(storageKeys.token, token);
+}
+
+export { hasToken, removeToken, setToken };

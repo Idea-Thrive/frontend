@@ -2,7 +2,7 @@ import { FC } from 'react';
 import paths from './paths';
 import Login from '../pages/login';
 import Home from '../pages/home';
-import { Middleware, needsAuth, noAuthNeeded } from './middleware';
+import { Middleware, needsAuth, noAuthNeeded, needsRole } from './middleware';
 
 export type Route = {
   path: string;
@@ -20,12 +20,12 @@ const routes: Array<Route> = [
   {
     path: paths.home,
     component: Home,
-    middleware: [needsAuth],
+    middleware: [needsAuth, needsRole],
   },
   {
     path: '*',
     component: Home,
-    middleware: [needsAuth],
+    middleware: [needsAuth, needsRole],
   },
 ];
 

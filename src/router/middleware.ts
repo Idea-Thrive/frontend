@@ -1,5 +1,7 @@
 import { hasToken } from '../service/auth';
 import paths from './paths';
+import store from 'store/store';
+import { removeToken } from 'service/auth';
 
 export enum Action {
   PASS = 'pass',
@@ -39,4 +41,15 @@ export function noAuthNeeded(route: any): RoutingResponse {
   }
 
   return generateRoutingResponse(Action.PASS, route);
+}
+
+export function needsRole(route: any): RoutingResponse {
+  if (store.getState().app.role) {
+    return generateRoutingResponse(Action.PASS, route);
+  }
+
+  removeToken();
+  return generateRoutingResponse(Action.REDIRECT, {
+    redirectPath: paths.login,
+  });
 }

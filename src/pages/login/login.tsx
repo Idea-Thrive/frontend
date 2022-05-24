@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import IdeaLogo from 'assets/idea.svg';
 import { ColorModeSwitcher } from 'service/color-mode-switcher';
 import {
@@ -12,21 +12,40 @@ import {
   FormLabel,
   Button,
   Box,
+  FormErrorMessage,
 } from '@chakra-ui/react';
 import t, { toggleLocale } from 'i18n';
 import { login } from 'service/api-helper/login';
 import useInput from 'hooks/use-input';
+import { isEmail, isRequired } from 'utils/validate';
 
 function Login() {
-  const emailInput = useInput('');
-  const passwordInput = useInput('');
+  const emailInput = useInput({
+    initialValue: '',
+    validator: isEmail,
+    errorMessage: 'emailIsNotValid',
+    clearErrorOnChange: true,
+  });
+
+  const passwordInput = useInput({
+    initialValue: '',
+    validator: isRequired,
+    errorMessage: 'passwordIsRequired',
+    clearErrorOnChange: true,
+  });
 
   const handleChangeLanguageClick = () => {
     toggleLocale();
   };
 
   const handleLoginClick = async () => {
-    console.log('login');
+    const isEmailValid = emailInput.validate();
+    const isPasswordValid = passwordInput.validate();
+
+    if (!isEmailValid || !isPasswordValid) {
+      return;
+    }
+
     const response = await login({ username: 'amir', password: 'test' });
     console.log({ response });
   };
@@ -45,26 +64,34 @@ function Login() {
 
         <Text>{t('welcomeMessage')}</Text>
 
-        <FormControl>
+        <FormControl isInvalid={Boolean(emailInput.error)}>
           <FormLabel>{t('email')}</FormLabel>
           <Input
             type="email"
             dir="ltr"
             placeholder="example@gmail.com"
             name="email"
-            {...emailInput}
+            value={emailInput.value}
+            onChange={emailInput.onChange}
           />
+          {emailInput.error && (
+            <FormErrorMessage>{t(emailInput.error)}</FormErrorMessage>
+          )}
         </FormControl>
 
-        <FormControl>
+        <FormControl isInvalid={Boolean(passwordInput.error)}>
           <FormLabel>{t('password')}</FormLabel>
           <Input
             dir="ltr"
             placeholder="Password"
             type="password"
             name="password"
-            {...passwordInput}
+            value={passwordInput.value}
+            onChange={passwordInput.onChange}
           />
+          {passwordInput.error && (
+            <FormErrorMessage>{t(passwordInput.error)}</FormErrorMessage>
+          )}
         </FormControl>
 
         <Button onClick={handleLoginClick}>{t('login')}</Button>

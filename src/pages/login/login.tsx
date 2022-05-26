@@ -13,6 +13,7 @@ import {
   Button,
   Box,
   FormErrorMessage,
+  useToast,
 } from '@chakra-ui/react';
 import t, { toggleLocale } from 'i18n';
 import { login } from 'service/api-helper/login';
@@ -23,10 +24,13 @@ import { updateUserRole } from 'store/slices/app-slice';
 import { setToken } from 'service/auth';
 import { useNavigate } from 'react-router-dom';
 import paths from 'router/paths';
+import { ERR_NETWORK } from 'service/error';
+import { AxiosError } from 'axios';
 
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const toast = useToast();
 
   const emailInput = useInput({
     initialValue: '',
@@ -54,15 +58,30 @@ function Login() {
       return;
     }
 
-    const {
-      data: { ok, data },
-    } = await login({ username: 'amir', password: 'test' });
-    console.log(ok, data);
-    if (ok) {
-      const { role, token } = data;
-      setToken(token);
-      dispatch(updateUserRole(role));
-      navigate(paths.home);
+    try {
+      const {
+        data: { ok, data },
+      } = await login({ username: 'amir', password: 'test' });
+      console.log(ok, data);
+      if (ok) {
+        const { role, token } = data;
+        setToken(token);
+        dispatch(updateUserRole(role));
+        navigate(paths.home);
+      }
+    } catch (error: any) {
+      let errorTitle = 'anErrorHasOccurred';
+      if (error.code === ERR_NETWORK) {
+        errorTitle = 'networkError';
+      }
+
+      toast({
+        title: t(errorTitle),
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+        position: 'top',
+      });
     }
   };
 

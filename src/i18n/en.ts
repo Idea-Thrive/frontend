@@ -10,6 +10,8 @@ const keys: Record<string, string> = {
   logout: 'Logout',
   changeTheme: 'Change Theme',
   toggleLanguage: 'Toggle Language',
+  anErrorHasOccurred: 'An error has occurred.',
+  networkError: 'Network Connection Error',
 };
 
 export default keys;

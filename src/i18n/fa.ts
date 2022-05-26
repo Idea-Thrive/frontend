@@ -8,7 +8,8 @@ const keys: Record<string, string> = {
   passwordIsRequired: 'رمز‌عبور الزامی است',
   settings: 'تنظیمات',
   logout: 'خروج',
-  toggleTheme: 'تغییر تم',
+  changeTheme: 'تغییر تم',
+  toggleLanguage: 'تغییر زبان',
 };
 
 export default keys;

@@ -15,9 +15,9 @@ import {
   Text,
   Button,
 } from '@chakra-ui/react';
-import t from 'i18n';
+import t, { toggleLocale } from 'i18n';
 import { FaMoon, FaSun } from 'react-icons/fa';
-
+import { MdTranslate } from 'react-icons/md';
 import { FiLogOut, FiSettings } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import paths from 'router/paths';
@@ -50,7 +50,27 @@ const DashboardDrawer: FC<DashboardDrawerProps> = ({
     navigate(paths.login);
   };
 
-  const items: Array<{ icon: FC; text: string; onClick: () => void }> = [
+  const handleChangeLanguageClick = () => {
+    toggleLocale();
+  };
+
+  const items: Array<{
+    icon: FC;
+    text: string;
+    onClick: () => void;
+    size?: number;
+  }> = [
+    {
+      icon: toggleThemeIcon,
+      text: 'changeTheme',
+      onClick: toggleColorMode,
+    },
+    {
+      icon: MdTranslate,
+      text: 'toggleLanguage',
+      onClick: handleChangeLanguageClick,
+      size: 25,
+    },
     {
       icon: FiSettings,
       text: 'settings',
@@ -60,11 +80,6 @@ const DashboardDrawer: FC<DashboardDrawerProps> = ({
       icon: FiLogOut,
       text: 'logout',
       onClick: handleLogoutClick,
-    },
-    {
-      icon: toggleThemeIcon,
-      text: 'toggleTheme',
-      onClick: toggleColorMode,
     },
   ];
 

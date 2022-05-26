@@ -6,6 +6,9 @@ const keys: Record<string, string> = {
   changeLanguage: 'Change Language To English',
   emailIsNotValid: 'فرمت ایمیل وارد شده صحیح نیست',
   passwordIsRequired: 'رمز‌عبور الزامی است',
+  settings: 'تنظیمات',
+  logout: 'خروج',
+  toggleTheme: 'تغییر تم',
 };
 
 export default keys;

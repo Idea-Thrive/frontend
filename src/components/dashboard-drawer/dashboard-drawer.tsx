@@ -11,7 +11,6 @@ import {
   ListItem,
   ListIcon,
   useColorModeValue,
-  Divider,
   useColorMode,
   Text,
   Button,
@@ -20,6 +19,9 @@ import t from 'i18n';
 import { FaMoon, FaSun } from 'react-icons/fa';
 
 import { FiLogOut, FiSettings } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
+import paths from 'router/paths';
+import { removeToken } from 'service/auth';
 
 interface DashboardDrawerProps {
   visibility: boolean;
@@ -36,14 +38,16 @@ const DashboardDrawer: FC<DashboardDrawerProps> = ({
   const size = useBreakpointValue({ base: 'full', lg: 'xs' });
   const toggleThemeIcon = useColorModeValue(FaMoon, FaSun);
 
+  const navigate = useNavigate();
+
   const handleSettingsClick = () => {
     // TODO: implement
-    console.log('setting');
+    console.log('Settings');
   };
 
   const handleLogoutClick = () => {
-    // TODO: implement
-    console.log('logout');
+    removeToken();
+    navigate(paths.login);
   };
 
   const items: Array<{ icon: FC; text: string; onClick: () => void }> = [

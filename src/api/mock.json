@@ -6,5 +6,35 @@
       "token": "test",
       "role": "1"
     }
+  },
+  "ideas": {
+    "ok": true,
+    "error": null,
+    "data": [
+      {
+        "id": "1",
+        "title": "Adding More Classes",
+        "creator": "Amirhossein Nouri",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, dolores! Ipsam est autem tempora quas eveniet error neque perspiciatis vero aut laudantium, magni sint praesentium cupiditate optio commodi sunt quasi natus assumenda fugiat at quia reprehenderit. Voluptas et nihil, quo omnis dicta provident nemo alias quos molestias dolorem quod ex",
+        "upVotes": 20,
+        "downVotes": 10,
+        "categories": [
+          { "name": "Fun", "color": "green" },
+          { "name": "Shit", "color": "orange" }
+        ]
+      },
+      {
+        "id": "2",
+        "title": "Adding More Classes",
+        "creator": "Amirhossein Nouri",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, dolores! Ipsam est autem tempora quas eveniet error neque perspiciatis vero aut laudantium, magni sint praesentium cupiditate optio commodi sunt quasi natus assumenda fugiat at quia reprehenderit. Voluptas et nihil, quo omnis dicta provident nemo alias quos molestias dolorem quod ex",
+        "upVotes": 20,
+        "downVotes": 10,
+        "categories": [
+          { "name": "Fun", "color": "green" },
+          { "name": "Shit", "color": "orange" }
+        ]
+      }
+    ]
   }
 }

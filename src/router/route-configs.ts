@@ -2,11 +2,12 @@ import { FC } from 'react';
 import paths from './paths';
 import Login from '../pages/login';
 import Home from '../pages/home';
+import IdeaDetails from '../pages/idea-details';
 import { Middleware, needsAuth, noAuthNeeded, needsRole } from './middleware';
 
 export type Route = {
   path: string;
-  component: FC;
+  component: FC<any>;
   exact?: boolean;
   middleware: Array<Middleware>;
 };
@@ -20,12 +21,17 @@ const routes: Array<Route> = [
   {
     path: paths.home,
     component: Home,
-    middleware: [needsAuth, needsRole],
+    middleware: [needsAuth],
+  },
+  {
+    path: paths.ideaDetails,
+    component: IdeaDetails,
+    middleware: [needsAuth],
   },
   {
     path: '*',
     component: Home,
-    middleware: [needsAuth, needsRole],
+    middleware: [needsAuth],
   },
 ];
 

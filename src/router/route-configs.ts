@@ -26,7 +26,7 @@ const routes: Array<Route> = [
   {
     path: paths.ideaDetails,
     component: IdeaDetails,
-    middleware: [needsAuth],
+    middleware: [],
   },
   {
     path: '*',

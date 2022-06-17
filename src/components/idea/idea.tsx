@@ -35,7 +35,7 @@ const Idea: FC<IdeaProps> = ({
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(paths.ideaDetails, { state: { id } });
+    navigate(`${paths.ideaDetails}?id=${id}`);
   };
 
   return (

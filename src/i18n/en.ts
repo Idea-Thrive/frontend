@@ -12,6 +12,7 @@ const keys: Record<string, string> = {
   toggleLanguage: 'Toggle Language',
   anErrorHasOccurred: 'An error has occurred.',
   networkError: 'Network Connection Error',
+  score: 'Score:',
 };
 
 export default keys;

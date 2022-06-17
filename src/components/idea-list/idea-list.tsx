@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { VStack } from '@chakra-ui/react';
+import { VStack, List, ListItem } from '@chakra-ui/react';
 import Idea from 'components/idea';
 
 interface IdeaListProps {
@@ -8,11 +8,13 @@ interface IdeaListProps {
 
 const IdeaList: FC<IdeaListProps> = ({ ideas }) => {
   return (
-    <VStack spacing={4}>
+    <List spacing={4}>
       {ideas.map((idea: any) => (
-        <Idea key={idea.id} {...idea} />
+        <ListItem>
+          <Idea key={idea.id} {...idea} />
+        </ListItem>
       ))}
-    </VStack>
+    </List>
   );
 };
 

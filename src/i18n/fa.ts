@@ -12,6 +12,7 @@ const keys: Record<string, string> = {
   toggleLanguage: 'تغییر زبان',
   anErrorHasOccurred: 'خطایی رخ داده‌است.',
   networkError: 'خطای اتصال اینترنت',
+  score: 'امتیاز:',
 };
 
 export default keys;

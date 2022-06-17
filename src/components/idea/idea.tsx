@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import {
   Box,
   VStack,
@@ -9,8 +9,9 @@ import {
   Flex,
 } from '@chakra-ui/react';
 import { Category } from 'types';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import paths from 'router/paths';
+import t from 'i18n';
 
 interface IdeaProps {
   title: string;
@@ -41,7 +42,7 @@ const Idea: FC<IdeaProps> = ({
     <VStack
       w="full"
       border="2px"
-      borderColor="gray.100"
+      borderColor="whiteAlpha.300"
       borderRadius="md"
       p={3}
       spacing={5}
@@ -49,7 +50,7 @@ const Idea: FC<IdeaProps> = ({
       onClick={handleClick}
     >
       <Flex alignItems="center" w="full" justifyContent="space-between">
-        <HStack alignItems="center" spacing={2}>
+        <HStack alignItems="center" spacing={4}>
           <Heading size="md">{title}</Heading>
           <Text>{creator}</Text>
         </HStack>
@@ -71,7 +72,12 @@ const Idea: FC<IdeaProps> = ({
           {description}
         </Text>
         <Box>
-          <Heading size="md">Votes:{upVotes - downVotes}</Heading>
+          <Heading size="md">
+            <HStack spacing={2}>
+              <Text display="inline">{t('score')}</Text>
+              <Text display="inline">{upVotes - downVotes}</Text>
+            </HStack>
+          </Heading>
         </Box>
       </Flex>
     </VStack>

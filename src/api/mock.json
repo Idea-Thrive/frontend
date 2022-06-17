@@ -13,26 +13,26 @@
     "data": [
       {
         "id": "1",
-        "title": "Adding More Classes",
+        "title": "اضافه کردن کلاس‌های بیشتر",
         "creator": "Amirhossein Nouri",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, dolores! Ipsam est autem tempora quas eveniet error neque perspiciatis vero aut laudantium, magni sint praesentium cupiditate optio commodi sunt quasi natus assumenda fugiat at quia reprehenderit. Voluptas et nihil, quo omnis dicta provident nemo alias quos molestias dolorem quod ex",
+        "description": " لورم لورم لورم لورم لورم لورم لورم لورم لورم لورم لورم لورم",
         "upVotes": 20,
         "downVotes": 10,
         "categories": [
-          { "name": "Fun", "color": "green" },
-          { "name": "Shit", "color": "orange" }
+          { "name": "بهبود", "color": "green" },
+          { "name": "گسترش", "color": "orange" }
         ]
       },
       {
         "id": "2",
-        "title": "Adding More Classes",
+        "title": "اضافه کردن کلاس‌های بیشتر",
         "creator": "Amirhossein Nouri",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, dolores! Ipsam est autem tempora quas eveniet error neque perspiciatis vero aut laudantium, magni sint praesentium cupiditate optio commodi sunt quasi natus assumenda fugiat at quia reprehenderit. Voluptas et nihil, quo omnis dicta provident nemo alias quos molestias dolorem quod ex",
+        "description": " لورم لورم لورم لورم لورم لورم لورم لورم لورم لورم لورم لورم",
         "upVotes": 20,
         "downVotes": 10,
         "categories": [
-          { "name": "Fun", "color": "green" },
-          { "name": "Shit", "color": "orange" }
+          { "name": "گسترش", "color": "green" },
+          { "name": "بهبود", "color": "orange" }
         ]
       }
     ]

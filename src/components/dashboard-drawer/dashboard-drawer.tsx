@@ -15,7 +15,7 @@ import {
   Text,
   Button,
 } from '@chakra-ui/react';
-import t, { toggleLocale } from 'i18n';
+import t, { toggleLocale, getCurrentLanguage } from 'i18n';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { MdTranslate } from 'react-icons/md';
 import { FiLogOut, FiSettings } from 'react-icons/fi';
@@ -83,10 +83,15 @@ const DashboardDrawer: FC<DashboardDrawerProps> = ({
     },
   ];
 
+  const getDrawerPlacement = (): 'left' | 'right' => {
+    const { direction } = getCurrentLanguage();
+    return direction === 'rtl' ? 'right' : 'left';
+  };
+
   return (
     <Drawer
       isOpen={visibility}
-      placement="end"
+      placement={getDrawerPlacement()}
       onClose={onVisibilityChange}
       size={size}
     >
@@ -95,7 +100,7 @@ const DashboardDrawer: FC<DashboardDrawerProps> = ({
         <DrawerCloseButton />
         <DrawerHeader>{t(title)}</DrawerHeader>
 
-        <DrawerBody>
+        <DrawerBody mt={3}>
           <List>
             {items.map((item, index) => (
               <Button mb={2} display="block" w="full">
@@ -103,10 +108,10 @@ const DashboardDrawer: FC<DashboardDrawerProps> = ({
                   py={3}
                   key={`item-${item.text}-${index}`}
                   onClick={item.onClick}
-                  textAlign="start"
+                  textAlign="end"
                 >
-                  <ListIcon as={item.icon} />
                   <Text display="inline">{t(item.text)}</Text>
+                  <ListIcon mx={2} as={item.icon} />
                 </ListItem>
               </Button>
             ))}

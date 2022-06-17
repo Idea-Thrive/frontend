@@ -103,13 +103,13 @@ const DashboardDrawer: FC<DashboardDrawerProps> = ({
         <DrawerBody mt={3}>
           <List>
             {items.map((item, index) => (
-              <Button mb={2} display="block" w="full">
-                <ListItem
-                  py={3}
-                  key={`item-${item.text}-${index}`}
-                  onClick={item.onClick}
-                  textAlign="end"
-                >
+              <Button
+                key={`item-${item.text}-${index}`}
+                mb={2}
+                display="block"
+                w="full"
+              >
+                <ListItem py={3} onClick={item.onClick} textAlign="end">
                   <Text display="inline">{t(item.text)}</Text>
                   <ListIcon mx={2} as={item.icon} />
                 </ListItem>

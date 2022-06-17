@@ -10,7 +10,7 @@ const IdeaList: FC<IdeaListProps> = ({ ideas }) => {
   return (
     <List spacing={4}>
       {ideas.map((idea: any) => (
-        <ListItem>
+        <ListItem key={`item-${idea.id}`}>
           <Idea key={idea.id} {...idea} />
         </ListItem>
       ))}

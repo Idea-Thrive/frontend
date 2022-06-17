@@ -57,7 +57,12 @@ const Idea: FC<IdeaProps> = ({
 
         <HStack>
           {categories.map((category) => (
-            <Badge colorScheme={category.color}>{category.name}</Badge>
+            <Badge
+              key={`category-${category.name}`}
+              colorScheme={category.color}
+            >
+              {category.name}
+            </Badge>
           ))}
         </HStack>
       </Flex>

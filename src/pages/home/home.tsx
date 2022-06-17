@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import useStateToProps from 'store/hooks/use-state-to-props';
-import { Text, Box, IconButton, VStack, useToast } from '@chakra-ui/react';
+import { Box, IconButton, useToast } from '@chakra-ui/react';
 import DashboardDrawer from 'components/dashboard-drawer';
 import { FiMenu } from 'react-icons/fi';
 import { getIdeas } from 'service/api-helper/home';
 import t from 'i18n';
-import Idea from 'components/idea';
+import IdeaList from 'components/idea-list';
 
 function Home() {
   const toast = useToast();
@@ -40,8 +40,6 @@ function Home() {
     updateIdeas();
   }, []);
 
-  console.log(ideas);
-
   const handleDrawerVisibilityChange = () => {
     setDrawerVisibility(false);
   };
@@ -66,11 +64,7 @@ function Home() {
           colorScheme="gray"
         />
       </Box>
-      <VStack spacing={4}>
-        {ideas.map((idea: any) => (
-          <Idea key={idea.id} {...idea} />
-        ))}
-      </VStack>
+      <IdeaList ideas={ideas} />
     </Box>
   );
 }

@@ -7,6 +7,7 @@ import {
   Text,
   Badge,
   Flex,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { Category } from 'types';
 import { useNavigate } from 'react-router-dom';
@@ -34,6 +35,8 @@ const Idea: FC<IdeaProps> = ({
 }) => {
   const navigate = useNavigate();
 
+  const borderColor = useColorModeValue('gray.200', 'whiteAlpha.300');
+
   const handleClick = () => {
     navigate(`${paths.ideaDetails}?id=${id}`);
   };
@@ -42,12 +45,13 @@ const Idea: FC<IdeaProps> = ({
     <VStack
       w="full"
       border="2px"
-      borderColor="whiteAlpha.300"
+      borderColor={borderColor}
       borderRadius="md"
       p={3}
       spacing={5}
       cursor="pointer"
       onClick={handleClick}
+      shadow="md"
     >
       <Flex alignItems="center" w="full" justifyContent="space-between">
         <HStack alignItems="center" spacing={4}>

@@ -40,6 +40,7 @@ const Idea: FC<IdeaProps> = ({
   const handleClick = () => {
     navigate(`${paths.ideaDetails}?id=${id}`);
   };
+  // TODO: make this component responsive for phone
 
   return (
     <VStack

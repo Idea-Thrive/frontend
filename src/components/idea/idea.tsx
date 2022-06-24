@@ -9,36 +9,26 @@ import {
   Flex,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { Category } from 'types';
+import { Idea as IdeaType } from 'types';
 import { useNavigate } from 'react-router-dom';
 import paths from 'router/paths';
 import t from 'i18n';
 
 interface IdeaProps {
-  title: string;
-  creator: string;
-  description: string;
-  upVotes: number;
-  downVotes: number;
-  categories: Array<Category>;
-  id: number;
+  idea: IdeaType;
 }
 
-const Idea: FC<IdeaProps> = ({
-  title,
-  creator,
-  description,
-  upVotes,
-  downVotes,
-  categories,
-  id,
-}) => {
+const Idea: FC<IdeaProps> = ({ idea }) => {
   const navigate = useNavigate();
 
   const borderColor = useColorModeValue('gray.200', 'whiteAlpha.300');
 
   const handleClick = () => {
-    navigate(`${paths.ideaDetails}?id=${id}`);
+    navigate(paths.ideaDetails, {
+      state: {
+        idea,
+      },
+    });
   };
   // TODO: make this component responsive for phone
 
@@ -56,12 +46,12 @@ const Idea: FC<IdeaProps> = ({
     >
       <Flex alignItems="center" w="full" justifyContent="space-between">
         <HStack alignItems="center" spacing={4}>
-          <Heading size="md">{title}</Heading>
-          <Text>{creator}</Text>
+          <Heading size="md">{idea.title}</Heading>
+          <Text>{idea.creator}</Text>
         </HStack>
 
         <HStack>
-          {categories.map((category) => (
+          {idea.categories.map((category) => (
             <Badge
               key={`category-${category.name}`}
               colorScheme={category.color}
@@ -79,13 +69,13 @@ const Idea: FC<IdeaProps> = ({
           display="inline-block"
           whiteSpace="nowrap"
         >
-          {description}
+          {idea.description}
         </Text>
         <Box>
           <Heading size="md">
             <HStack spacing={2}>
               <Text display="inline">{t('score')}</Text>
-              <Text display="inline">{upVotes - downVotes}</Text>
+              <Text display="inline">{idea.upVotes - idea.downVotes}</Text>
             </HStack>
           </Heading>
         </Box>

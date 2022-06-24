@@ -41,8 +41,7 @@ const DashboardDrawer: FC<DashboardDrawerProps> = ({
   const navigate = useNavigate();
 
   const handleSettingsClick = () => {
-    // TODO: implement
-    console.log('Settings');
+    navigate(paths.settings);
   };
 
   const handleLogoutClick = () => {

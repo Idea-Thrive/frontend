@@ -5,6 +5,7 @@ const paths: Path = {
   home: '/home',
   ideaDetails: '/idea-details',
   createNewIdea: '/create-new-idea',
+  settings: '/settings',
 };
 
 export default paths;

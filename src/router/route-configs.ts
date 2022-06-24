@@ -5,6 +5,7 @@ import Home from '../pages/home';
 import IdeaDetails from '../pages/idea-details';
 import { Middleware, needsAuth, noAuthNeeded, needsRole } from './middleware';
 import CreateNewIdea from 'pages/create-new-idea';
+import Settings from 'pages/settings';
 
 export type Route = {
   path: string;
@@ -32,6 +33,11 @@ const routes: Array<Route> = [
   {
     path: paths.createNewIdea,
     component: CreateNewIdea,
+    middleware: [needsAuth],
+  },
+  {
+    path: paths.settings,
+    component: Settings,
     middleware: [needsAuth],
   },
   {

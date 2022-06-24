@@ -14,6 +14,7 @@ const keys: Record<string, string> = {
   networkError: 'Network Connection Error',
   score: 'Score:',
   createNewIdea: 'Create a New Idea',
+  comments: 'Comments',
 };
 
 export default keys;

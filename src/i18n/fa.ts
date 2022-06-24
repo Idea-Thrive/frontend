@@ -14,6 +14,7 @@ const keys: Record<string, string> = {
   networkError: 'خطای اتصال اینترنت',
   score: 'امتیاز:',
   createNewIdea: 'ساخت ایده جدید',
+  comments: 'نظرات',
 };
 
 export default keys;

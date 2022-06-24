@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { VStack, List, ListItem } from '@chakra-ui/react';
+import { List, ListItem } from '@chakra-ui/react';
 import Idea from 'components/idea';
 
 interface IdeaListProps {

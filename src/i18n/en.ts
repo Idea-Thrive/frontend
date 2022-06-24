@@ -13,6 +13,7 @@ const keys: Record<string, string> = {
   anErrorHasOccurred: 'An error has occurred.',
   networkError: 'Network Connection Error',
   score: 'Score:',
+  createNewIdea: 'Create a New Idea',
 };
 
 export default keys;

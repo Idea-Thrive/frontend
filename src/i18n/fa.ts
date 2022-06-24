@@ -13,6 +13,7 @@ const keys: Record<string, string> = {
   anErrorHasOccurred: 'خطایی رخ داده‌است.',
   networkError: 'خطای اتصال اینترنت',
   score: 'امتیاز:',
+  createNewIdea: 'ساخت ایده جدید',
 };
 
 export default keys;

@@ -1,13 +1,20 @@
 import { FC } from 'react';
-import { getQueryParam } from 'utils/query-param';
+import useLocationState from 'hooks/use-location-state';
 
-interface IdeaDetailsProp {
-  location: any;
-}
-
-const IdeaDetails: FC<IdeaDetailsProp> = () => {
-  const id = getQueryParam('id');
-  return <>{id}</>;
+const IdeaDetails: FC = () => {
+  const { idea } = useLocationState<any>();
+  const { title, creator, description, upVotes, downVotes, categories, id } =
+    idea;
+  console.log({
+    title,
+    creator,
+    description,
+    upVotes,
+    downVotes,
+    categories,
+    id,
+  });
+  return <>Idea</>;
 };
 
 export default IdeaDetails;

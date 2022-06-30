@@ -1,5 +1,5 @@
 import storageKeys from '../service/storage';
-import { hasItem, removeItem, setItem } from '../utils/storage';
+import { hasItem, removeItem, setItem, getItem } from '../utils/storage';
 
 function hasToken(): boolean {
   return hasItem(storageKeys.token);
@@ -13,4 +13,8 @@ function setToken(token: string): void {
   setItem(storageKeys.token, token);
 }
 
-export { hasToken, removeToken, setToken };
+function getToken(): string | undefined {
+  return getItem(storageKeys.token);
+}
+
+export { hasToken, removeToken, setToken, getToken };

@@ -17,6 +17,11 @@ const keys: Record<string, string> = {
   comments: 'نظرات',
   tryAgain: 'تلاش مجدد',
   wrongUsernameOrPassword: 'ایمیل یا رمزعبور صحیح نمی‌باشد',
+  addFilter: 'اضافه کردن فیلتر',
+  approved: 'تایید شده',
+  topRated: 'بیش‌ترین امتیاز',
+  newest: 'جدیدترین',
+  clearFilter: 'پاک کردن فیلتر',
 };
 
 export default keys;

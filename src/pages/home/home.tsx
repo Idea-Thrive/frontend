@@ -19,6 +19,7 @@ import IdeaList from 'components/idea-list';
 import { useNavigate } from 'react-router-dom';
 import paths from 'router/paths';
 import useStateToProps from 'store/hooks/use-state-to-props';
+import Filter from 'components/filter';
 
 function Home() {
   const navigate = useNavigate();
@@ -26,12 +27,21 @@ function Home() {
   const [drawerVisibility, setDrawerVisibility] = useState(false);
   const [ideas, setIdeas] = useState([]);
 
-  const { firstName } = useStateToProps((state: any) => ({
+  const { firstName, companyId } = useStateToProps((state: any) => ({
     firstName: state.app.user?.first_name,
+    companyId: state.app.user?.company_id,
   }));
 
   const updateIdeas = async () => {
     try {
+      const { data } = await getIdeas({
+        companyId,
+        offset: 0,
+        size: 100,
+        category: 'shit',
+      });
+
+      setIdeas(data.data);
       // const {
       //   data: { data, ok },
       // } = await getIdeas({});
@@ -50,8 +60,10 @@ function Home() {
   };
 
   useEffect(() => {
-    updateIdeas();
-  }, []);
+    if (companyId) {
+      updateIdeas();
+    }
+  }, [companyId]);
 
   const handleDrawerVisibilityChange = () => {
     setDrawerVisibility(false);
@@ -86,17 +98,22 @@ function Home() {
         />
       </Flex>
       <Divider m={3} />
-      <Box mb={3} width="full" textAlign="center">
+      <Flex
+        mb={3}
+        width="full"
+        justifyContent="space-between"
+        alignItems="center"
+      >
         <Button
           onClick={handleCreateNewIdeaClick}
           colorScheme="telegram"
-          mx={8}
           variant="outline"
         >
           <Text mx={2}>{t('createNewIdea')}</Text>
           <HiPlus size={22} />
         </Button>
-      </Box>
+        <Filter />
+      </Flex>
       <IdeaList ideas={ideas} />
     </Box>
   );

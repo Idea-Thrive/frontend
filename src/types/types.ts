@@ -5,10 +5,18 @@ export type Category = {
 
 export interface Idea {
   title: string;
-  creator: string;
+  category: string;
   description: string;
-  upVotes: number;
-  downVotes: number;
-  category: Category;
-  id: number;
+  up_vote_count: number;
+  down_vote_count: number;
+  creator_id: string;
+  company_id: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export enum FilterBy {
+  APPROVED = 'approved',
+  TOP_RATED = 'topRated',
+  NEWEST = 'newest',
 }

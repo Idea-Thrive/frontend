@@ -17,6 +17,12 @@ const keys: Record<string, string> = {
   comments: 'Comments',
   tryAgain: 'Try Again',
   wrongUsernameOrPassword: 'Email or password is not correct',
+  filterDefaultText: 'Sort',
+  addFilter: 'Add Filter',
+  approved: 'Approved',
+  topRated: 'Top Rated',
+  newest: 'Newest',
+  clearFilter: 'Clear Filter',
 };
 
 export default keys;

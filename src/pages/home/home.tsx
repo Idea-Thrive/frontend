@@ -86,7 +86,7 @@ function Home() {
         />
       </Flex>
       <Divider m={3} />
-      <Box mb={3} width="full" textAlign="end">
+      <Box mb={3} width="full" textAlign="center">
         <Button
           onClick={handleCreateNewIdeaClick}
           colorScheme="telegram"

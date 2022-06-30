@@ -10,7 +10,7 @@ const keys: Record<string, string> = {
   logout: 'خروج',
   changeTheme: 'تغییر تم',
   toggleLanguage: 'تغییر زبان',
-  anErrorHasOccurred: 'خطایی رخ داده‌است.',
+  anErrorHasOccurred: 'خطایی رخ داده‌است',
   networkError: 'خطای اتصال اینترنت',
   score: 'امتیاز:',
   createNewIdea: 'ساخت ایده جدید',

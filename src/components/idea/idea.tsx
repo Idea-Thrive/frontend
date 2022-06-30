@@ -50,16 +50,9 @@ const Idea: FC<IdeaProps> = ({ idea }) => {
           <Text>{idea.creator}</Text>
         </HStack>
 
-        <HStack>
-          {idea.categories.map((category) => (
-            <Badge
-              key={`category-${category.name}`}
-              colorScheme={category.color}
-            >
-              {category.name}
-            </Badge>
-          ))}
-        </HStack>
+        <Box>
+          <Badge colorScheme={idea.category.color}>{idea.category.name}</Badge>
+        </Box>
       </Flex>
       <Flex w="full" justify="space-between">
         <Text

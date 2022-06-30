@@ -18,10 +18,7 @@
         "description": " لورم لورم لورم لورم لورم لورم لورم لورم لورم لورم لورم لورم",
         "upVotes": 20,
         "downVotes": 10,
-        "categories": [
-          { "name": "بهبود", "color": "green" },
-          { "name": "گسترش", "color": "orange" }
-        ]
+        "category": { "name": "بهبود", "color": "green" }
       },
       {
         "id": "2",
@@ -30,11 +27,13 @@
         "description": " لورم لورم لورم لورم لورم لورم لورم لورم لورم لورم لورم لورم",
         "upVotes": 20,
         "downVotes": 10,
-        "categories": [
-          { "name": "گسترش", "color": "green" },
-          { "name": "بهبود", "color": "orange" }
-        ]
-      }
+        "category": { "name": "گسترش", "color": "green" }
+      } <Badge
+      key={`category-${category.name}`}
+      colorScheme={category.color}
+    >
+      {category.name}
+    </Badge>
     ]
   }
 }

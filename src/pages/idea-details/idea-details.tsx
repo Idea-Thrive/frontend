@@ -19,20 +19,10 @@ import { BiCommentDetail } from 'react-icons/bi';
 
 const IdeaDetails: FC = () => {
   const { idea } = useLocationState<any>();
-  const { title, creator, description, upVotes, downVotes, categories, id } =
+  const { title, creator, description, upVotes, downVotes, category, id } =
     idea;
 
   const borderColor = useColorModeValue('gray.200', 'whiteAlpha.300');
-
-  console.log({
-    title,
-    creator,
-    description,
-    upVotes,
-    downVotes,
-    categories,
-    id,
-  });
 
   const handleRateClick = () => {
     // TODO: Open a modal and submit the rating
@@ -48,7 +38,6 @@ const IdeaDetails: FC = () => {
       borderRadius="md"
       p={3}
       spacing={5}
-      cursor="pointer"
       shadow="md"
     >
       <Flex alignItems="center" w="full" justifyContent="space-between">
@@ -57,16 +46,9 @@ const IdeaDetails: FC = () => {
           <Text>{creator}</Text>
         </HStack>
 
-        <HStack>
-          {categories.map((category: Category) => (
-            <Badge
-              key={`category-${category.name}`}
-              colorScheme={category.color}
-            >
-              {category.name}
-            </Badge>
-          ))}
-        </HStack>
+        <Box>
+          <Badge colorScheme={category.color}>{category.name}</Badge>
+        </Box>
       </Flex>
       <Box w="full">
         <Text

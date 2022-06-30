@@ -9,6 +9,6 @@ export interface Idea {
   description: string;
   upVotes: number;
   downVotes: number;
-  categories: Array<Category>;
+  category: Category;
   id: number;
 }

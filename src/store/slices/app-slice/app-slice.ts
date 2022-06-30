@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Idea } from 'types/types';
 
 type User = {
   company_id: string | null;
@@ -15,6 +16,8 @@ type User = {
 
 type App = {
   user: User;
+  ideas: Array<Idea>;
+  filteredIdeas: Array<Idea>;
 };
 
 const initialState: App = {
@@ -30,6 +33,8 @@ const initialState: App = {
     photo_url: null,
     role: null,
   },
+  ideas: [],
+  filteredIdeas: [],
 };
 
 const appSlice = createSlice({
@@ -39,9 +44,16 @@ const appSlice = createSlice({
     updateUser(state, action: PayloadAction<User>) {
       state.user = action.payload;
     },
+    updateIdeas(state, action: PayloadAction<Array<Idea>>) {
+      state.ideas = action.payload;
+    },
+    updateFilteredIdeas(state, action: PayloadAction<Array<Idea>>) {
+      state.filteredIdeas = action.payload;
+    },
   },
 });
 
-export const { updateUser } = appSlice.actions;
+export const { updateUser, updateIdeas, updateFilteredIdeas } =
+  appSlice.actions;
 
 export default appSlice.reducer;

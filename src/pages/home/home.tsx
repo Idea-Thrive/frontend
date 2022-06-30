@@ -20,17 +20,23 @@ import { useNavigate } from 'react-router-dom';
 import paths from 'router/paths';
 import useStateToProps from 'store/hooks/use-state-to-props';
 import Filter from 'components/filter';
+import { useDispatch } from 'react-redux';
+import { updateIdeas as updateStoreIdeas } from 'store/slices/app-slice';
 
 function Home() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const toast = useToast();
   const [drawerVisibility, setDrawerVisibility] = useState(false);
-  const [ideas, setIdeas] = useState([]);
 
-  const { firstName, companyId } = useStateToProps((state: any) => ({
-    firstName: state.app.user?.first_name,
-    companyId: state.app.user?.company_id,
-  }));
+  const { firstName, lastName, companyId, filteredIdeas } = useStateToProps(
+    (state: any) => ({
+      filteredIdeas: state.app.filteredIdeas,
+      firstName: state.app.user?.first_name,
+      lastName: state.app.user?.last_name,
+      companyId: state.app.user?.company_id,
+    }),
+  );
 
   const updateIdeas = async () => {
     try {
@@ -41,7 +47,7 @@ function Home() {
         category: 'shit',
       });
 
-      setIdeas(data.data);
+      dispatch(updateStoreIdeas(data.data));
       // const {
       //   data: { data, ok },
       // } = await getIdeas({});
@@ -77,6 +83,14 @@ function Home() {
     navigate(paths.createNewIdea);
   };
 
+  const handleFilterChange = (filter: string) => {
+    console.log(filter);
+  };
+
+  const handleFilterClear = () => {
+    console.log('clear');
+  };
+
   return (
     <Box px={{ base: 5, lg: 0 }} py={{ base: 3, md: 10 }} w="full">
       <DashboardDrawer
@@ -86,8 +100,11 @@ function Home() {
       />
       <Flex justifyContent="space-between" alignItems="center">
         <HStack spacing={4}>
-          <Avatar name={firstName} />
-          <Text>{firstName}</Text>
+          <Avatar name={`${firstName} ${lastName}`} />
+          <HStack>
+            <Text>{firstName}</Text>
+            <Text>{lastName}</Text>
+          </HStack>
         </HStack>
         <IconButton
           onClick={handleMenuClick}
@@ -112,9 +129,12 @@ function Home() {
           <Text mx={2}>{t('createNewIdea')}</Text>
           <HiPlus size={22} />
         </Button>
-        <Filter />
+        <Filter
+          onFilterChange={handleFilterChange}
+          onFilterClear={handleFilterClear}
+        />
       </Flex>
-      <IdeaList ideas={ideas} />
+      <IdeaList ideas={filteredIdeas} />
     </Box>
   );
 }

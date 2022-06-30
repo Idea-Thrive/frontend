@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import t from 'i18n';
 import {
   Menu,
@@ -10,11 +10,29 @@ import {
   HStack,
 } from '@chakra-ui/react';
 import { FiDelete } from 'react-icons/fi';
+import { useDispatch } from 'react-redux';
+import { updateFilteredIdeas } from 'store/slices/app-slice';
+import useStateToProps from 'store/hooks/use-state-to-props';
 
-const Filter: FC = () => {
+interface FilterProps {
+  onFilterChange: (filter: string) => void;
+  onFilterClear: () => void;
+}
+
+const Filter: FC<FilterProps> = ({ onFilterChange, onFilterClear }) => {
   const DEFAULT_BUTTON_TEXT = 'addFilter';
   const [buttonText, setButtonText] = useState(t(DEFAULT_BUTTON_TEXT));
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+
+  const { ideas } = useStateToProps((state: any) => ({
+    ideas: state.app.ideas,
+  }));
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateFilteredIdeas(ideas));
+  }, [ideas]);
 
   const filterItems = [
     { text: 'approved' },
@@ -23,6 +41,7 @@ const Filter: FC = () => {
   ];
 
   const handleFilterClick = (text: string) => {
+    onFilterChange(text);
     setButtonText(t(text));
     setSelectedFilter(text);
   };
@@ -30,6 +49,7 @@ const Filter: FC = () => {
   const shouldRenderClearFilter = () => Boolean(selectedFilter);
 
   const clearFilter = () => {
+    onFilterClear();
     setButtonText(t(DEFAULT_BUTTON_TEXT));
     setSelectedFilter(null);
   };

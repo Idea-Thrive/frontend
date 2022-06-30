@@ -15,6 +15,7 @@ const keys: Record<string, string> = {
   score: 'امتیاز:',
   createNewIdea: 'ساخت ایده جدید',
   comments: 'نظرات',
+  tryAgain: 'تلاش مجدد',
 };
 
 export default keys;

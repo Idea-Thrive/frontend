@@ -15,6 +15,7 @@ const keys: Record<string, string> = {
   score: 'Score:',
   createNewIdea: 'Create a New Idea',
   comments: 'Comments',
+  tryAgain: 'Try Again',
 };
 
 export default keys;

@@ -28,12 +28,7 @@
         "upVotes": 20,
         "downVotes": 10,
         "category": { "name": "گسترش", "color": "green" }
-      } <Badge
-      key={`category-${category.name}`}
-      colorScheme={category.color}
-    >
-      {category.name}
-    </Badge>
+      }
     ]
   }
 }

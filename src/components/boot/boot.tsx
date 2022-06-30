@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Container, useToast } from '@chakra-ui/react';
+import { Container } from '@chakra-ui/react';
 import Router from 'router/router';
 import { getCurrentLanguage } from 'i18n/i18n';
 import style from 'style/app.module.css';
@@ -12,7 +12,6 @@ import { ERROR_UNAUTHORIZED } from 'service/error-codes';
 import { useDispatch } from 'react-redux';
 import { updateUser } from 'store/slices/app-slice';
 import SplashScreen from 'components/splash-screen';
-import t from 'i18n';
 import ErrorBoundary from 'components/error-boundary';
 import { logout, hasToken } from 'service/auth';
 
@@ -20,7 +19,6 @@ const Boot: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  const toast = useToast();
   const dispatch = useDispatch();
 
   const { direction } = getCurrentLanguage();
@@ -40,13 +38,6 @@ const Boot: FC = () => {
         return;
       }
       setHasError(true);
-      toast({
-        title: t('anErrorHasOccurred'),
-        status: 'error',
-        duration: 3000,
-        isClosable: true,
-        position: 'top',
-      });
       console.error(err);
     } finally {
       setIsLoading(false);

@@ -6,5 +6,8 @@ type LoginParams = {
 };
 
 export function login({ username, password }: LoginParams): Promise<any> {
-  return request.get('api/login', { params: { username, password } });
+  return request.post('auth/login', {
+    username,
+    password,
+  });
 }

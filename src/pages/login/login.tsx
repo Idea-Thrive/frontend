@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import IdeaLogo from 'assets/idea.svg';
 import { ColorModeSwitcher } from 'service/color-mode-switcher';
 import {
@@ -19,17 +19,13 @@ import t, { toggleLocale } from 'i18n';
 import { login } from 'service/api-helper/login';
 import useInput from 'hooks/use-input';
 import { isEmail, isRequired } from 'utils/validate';
-import { useDispatch } from 'react-redux';
-import { updateUserRole } from 'store/slices/app-slice';
 import { setToken } from 'service/auth';
-import { useNavigate } from 'react-router-dom';
 import paths from 'router/paths';
 import { ERR_NETWORK } from 'service/error';
-import { AxiosError } from 'axios';
+import { STATUS_OK } from 'constants/';
 
 function Login() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const toast = useToast();
 
   const emailInput = useInput({
@@ -58,16 +54,18 @@ function Login() {
       return;
     }
 
+    setIsLoading(true);
+
     try {
-      const {
-        data: { ok, data },
-      } = await login({ username: 'amir', password: 'test' });
-      console.log(ok, data);
-      if (ok) {
-        const { role, token } = data;
+      const { status, data } = await login({
+        username: emailInput.value,
+        password: passwordInput.value,
+      });
+
+      if (status === STATUS_OK) {
+        const { token } = data;
         setToken(token);
-        dispatch(updateUserRole(role));
-        navigate(paths.home);
+        window.location.replace(paths.home);
       }
     } catch (error: any) {
       let errorTitle = 'anErrorHasOccurred';
@@ -82,6 +80,8 @@ function Login() {
         isClosable: true,
         position: 'top',
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -129,7 +129,9 @@ function Login() {
           )}
         </FormControl>
 
-        <Button onClick={handleLoginClick}>{t('login')}</Button>
+        <Button isLoading={isLoading} onClick={handleLoginClick}>
+          {t('login')}
+        </Button>
         <Button onClick={handleChangeLanguageClick}>
           {t('changeLanguage')}
         </Button>

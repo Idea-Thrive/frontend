@@ -57,7 +57,7 @@ function Home() {
   };
 
   return (
-    <Box px={10} py={{ sm: 0, md: 10 }} w="full">
+    <Box px='10px' py={{ sm: 0, md: 10 }} w="full">
       <DashboardDrawer
         visibility={drawerVisibility}
         onVisibilityChange={handleDrawerVisibilityChange}

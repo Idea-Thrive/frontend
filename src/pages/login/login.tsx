@@ -23,6 +23,7 @@ import { setToken } from 'service/auth';
 import paths from 'router/paths';
 import { ERR_NETWORK } from 'service/error';
 import { STATUS_OK } from 'constants/';
+import { ERROR_FORBIDDEN } from 'service/error-codes';
 
 function Login() {
   const [isLoading, setIsLoading] = useState(false);
@@ -58,7 +59,7 @@ function Login() {
 
     try {
       const { status, data } = await login({
-        username: emailInput.value,
+        email: emailInput.value,
         password: passwordInput.value,
       });
 
@@ -73,12 +74,16 @@ function Login() {
         errorTitle = 'networkError';
       }
 
+      if (error.response.status === ERROR_FORBIDDEN) {
+        errorTitle = 'wrongUsernameOrPassword';
+      }
+
       toast({
         title: t(errorTitle),
         status: 'error',
         duration: 3000,
         isClosable: true,
-        position: 'top',
+        position: 'bottom',
       });
     } finally {
       setIsLoading(false);

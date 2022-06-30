@@ -1,13 +1,13 @@
 import request from '../request';
 
 type LoginParams = {
-  username: string;
+  email: string;
   password: string;
 };
 
-export function login({ username, password }: LoginParams): Promise<any> {
+export function login({ email, password }: LoginParams): Promise<any> {
   return request.post('auth/login', {
-    username,
+    email,
     password,
   });
 }

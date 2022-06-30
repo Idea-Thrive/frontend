@@ -16,6 +16,7 @@ const keys: Record<string, string> = {
   createNewIdea: 'Create a New Idea',
   comments: 'Comments',
   tryAgain: 'Try Again',
+  wrongUsernameOrPassword: 'Email or password is not correct',
 };
 
 export default keys;

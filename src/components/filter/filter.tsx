@@ -14,12 +14,9 @@ import { useDispatch } from 'react-redux';
 import { updateFilteredIdeas } from 'store/slices/app-slice';
 import useStateToProps from 'store/hooks/use-state-to-props';
 
-interface FilterProps {
-  onFilterChange: (filter: string) => void;
-  onFilterClear: () => void;
-}
+interface FilterProps {}
 
-const Filter: FC<FilterProps> = ({ onFilterChange, onFilterClear }) => {
+const Filter: FC<FilterProps> = () => {
   const DEFAULT_BUTTON_TEXT = 'addFilter';
   const [buttonText, setButtonText] = useState(t(DEFAULT_BUTTON_TEXT));
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
@@ -41,7 +38,6 @@ const Filter: FC<FilterProps> = ({ onFilterChange, onFilterClear }) => {
   ];
 
   const handleFilterClick = (text: string) => {
-    onFilterChange(text);
     setButtonText(t(text));
     setSelectedFilter(text);
   };
@@ -49,7 +45,6 @@ const Filter: FC<FilterProps> = ({ onFilterChange, onFilterClear }) => {
   const shouldRenderClearFilter = () => Boolean(selectedFilter);
 
   const clearFilter = () => {
-    onFilterClear();
     setButtonText(t(DEFAULT_BUTTON_TEXT));
     setSelectedFilter(null);
   };

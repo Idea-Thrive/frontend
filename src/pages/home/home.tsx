@@ -83,14 +83,6 @@ function Home() {
     navigate(paths.createNewIdea);
   };
 
-  const handleFilterChange = (filter: string) => {
-    console.log(filter);
-  };
-
-  const handleFilterClear = () => {
-    console.log('clear');
-  };
-
   return (
     <Box px={{ base: 5, lg: 0 }} py={{ base: 3, md: 10 }} w="full">
       <DashboardDrawer
@@ -129,10 +121,7 @@ function Home() {
           <Text mx={2}>{t('createNewIdea')}</Text>
           <HiPlus size={22} />
         </Button>
-        <Filter
-          onFilterChange={handleFilterChange}
-          onFilterClear={handleFilterClear}
-        />
+        <Filter />
       </Flex>
       <IdeaList ideas={filteredIdeas} />
     </Box>

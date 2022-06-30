@@ -44,7 +44,7 @@ export function noAuthNeeded(route: any): RoutingResponse {
 }
 
 export function needsRole(route: any): RoutingResponse {
-  if (store.getState().app.role) {
+  if (store.getState().app.user.role) {
     return generateRoutingResponse(Action.PASS, route);
   }
 

@@ -1,6 +1,5 @@
 import { FC, useState } from 'react';
-import { ChakraProvider, Container, useToast } from '@chakra-ui/react';
-import theme from 'theme';
+import { Container, useToast } from '@chakra-ui/react';
 import Router from 'router/router';
 import { getCurrentLanguage } from 'i18n/i18n';
 import style from 'style/app.module.css';
@@ -10,16 +9,17 @@ import Fonts from 'components/fonts';
 import useDidMount from 'hooks/use-did-mount';
 import { getConfig as requestConfig } from 'service/api-helper/boot';
 import { ERROR_UNAUTHORIZED } from 'service/error-codes';
-import { STATUS_OK } from 'constants/constants';
 import { useDispatch } from 'react-redux';
 import { updateUser } from 'store/slices/app-slice';
 import SplashScreen from 'components/splash-screen';
 import t from 'i18n';
 import ErrorBoundary from 'components/error-boundary';
+import { AxiosError } from 'axios';
+import { logout, hasToken } from 'service/auth';
 
 const Boot: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<AxiosError | null>(null);
 
   const toast = useToast();
   const dispatch = useDispatch();
@@ -27,15 +27,20 @@ const Boot: FC = () => {
   const { direction } = getCurrentLanguage();
 
   const getConfig = async () => {
+    if (hasToken() === false) {
+      return;
+    }
     setIsLoading(true);
     try {
-      const { status, data } = await requestConfig();
-      if (status === STATUS_OK) {
-        dispatch(updateUser(data));
-        setIsLoading(false);
-      }
+      const { data } = await requestConfig();
+      dispatch(updateUser(data));
+      setIsLoading(false);
     } catch (err: any) {
-      setError(err);
+      if (err.response.status === ERROR_UNAUTHORIZED) {
+        logout();
+        return;
+      }
+      setError(error);
       toast({
         title: t('anErrorHasOccurred'),
         status: 'error',
@@ -81,14 +86,6 @@ const Boot: FC = () => {
   );
 };
 
-function BootWithChakra() {
-  return (
-    <ChakraProvider theme={theme}>
-      <BootWithRedux />
-    </ChakraProvider>
-  );
-}
-
 function BootWithRedux() {
   return (
     <ReduxProvider store={store}>
@@ -97,4 +94,4 @@ function BootWithRedux() {
   );
 }
 
-export default BootWithChakra;
+export default BootWithRedux;

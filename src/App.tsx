@@ -1,5 +1,7 @@
 import store from 'store';
 import Boot from 'components/boot';
+import { ChakraProvider } from '@chakra-ui/react';
+import theme from 'theme';
 
 declare global {
   interface Window {
@@ -11,5 +13,9 @@ export const App = () => {
   if (process.env.NODE_ENV === 'development') {
     window.store = store;
   }
-  return <Boot />;
+  return (
+    <ChakraProvider theme={theme}>
+      <Boot />;
+    </ChakraProvider>
+  );
 };

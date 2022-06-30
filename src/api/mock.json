@@ -12,23 +12,94 @@
     "error": null,
     "data": [
       {
-        "id": "1",
-        "title": "اضافه کردن کلاس‌های بیشتر",
-        "creator": "Amirhossein Nouri",
-        "description": " لورم لورم لورم لورم لورم لورم لورم لورم لورم لورم لورم لورم",
-        "upVotes": 20,
-        "downVotes": 10,
-        "category": { "name": "بهبود", "color": "green" }
+        "title": "کشتن سالاری‌فرد",
+        "category": "بهبود",
+        "description": "او یک بی ناموس است",
+        "up_vote_count": 100,
+        "down_vote_count": -5,
+        "creator_id": "امیرحسین نوری",
+        "company_id": "دانشکده کامپیوتر",
+        "created_at": "2022-06-05T10:58:04.639968937+04:30",
+        "updated_at": "2022-06-05T10:58:04.639968994+04:30"
       },
       {
-        "id": "2",
-        "title": "اضافه کردن کلاس‌های بیشتر",
-        "creator": "Amirhossein Nouri",
-        "description": " لورم لورم لورم لورم لورم لورم لورم لورم لورم لورم لورم لورم",
-        "upVotes": 20,
-        "downVotes": 10,
-        "category": { "name": "گسترش", "color": "green" }
+        "title": "کشتن سالاری‌فرد",
+        "category": "بهبود",
+        "description": "او یک بی ناموس است",
+        "up_vote_count": 100,
+        "down_vote_count": -5,
+        "creator_id": "امیرحسین نوری",
+        "company_id": "دانشکده کامپیوتر",
+        "created_at": "2022-06-05T10:58:04.639968937+04:30",
+        "updated_at": "2022-06-05T10:58:04.639968994+04:30"
+      },
+      {
+        "title": "کشتن سالاری‌فرد",
+        "category": "بهبود",
+        "description": "او یک بی ناموس است",
+        "up_vote_count": 100,
+        "down_vote_count": -5,
+        "creator_id": "امیرحسین نوری",
+        "company_id": "دانشکده کامپیوتر",
+        "created_at": "2022-06-05T10:58:04.639968937+04:30",
+        "updated_at": "2022-06-05T10:58:04.639968994+04:30"
+      },
+      {
+        "title": "کشتن سالاری‌فرد",
+        "category": "بهبود",
+        "description": "او یک بی ناموس است",
+        "up_vote_count": 100,
+        "down_vote_count": -5,
+        "creator_id": "امیرحسین نوری",
+        "company_id": "دانشکده کامپیوتر",
+        "created_at": "2022-06-05T10:58:04.639968937+04:30",
+        "updated_at": "2022-06-05T10:58:04.639968994+04:30"
+      },
+      {
+        "title": "کشتن سالاری‌فرد",
+        "category": "بهبود",
+        "description": "او یک بی ناموس است",
+        "up_vote_count": 100,
+        "down_vote_count": -5,
+        "creator_id": "امیرحسین نوری",
+        "company_id": "دانشکده کامپیوتر",
+        "created_at": "2022-06-05T10:58:04.639968937+04:30",
+        "updated_at": "2022-06-05T10:58:04.639968994+04:30"
+      },
+      {
+        "title": "کشتن سالاری‌فرد",
+        "category": "بهبود",
+        "description": "او یک بی ناموس است",
+        "up_vote_count": 100,
+        "down_vote_count": -5,
+        "creator_id": "امیرحسین نوری",
+        "company_id": "دانشکده کامپیوتر",
+        "created_at": "2022-06-05T10:58:04.639968937+04:30",
+        "updated_at": "2022-06-05T10:58:04.639968994+04:30"
+      },
+      {
+        "title": "کشتن سالاری‌فرد",
+        "category": "بهبود",
+        "description": "او یک بی ناموس است",
+        "up_vote_count": 100,
+        "down_vote_count": -5,
+        "creator_id": "امیرحسین نوری",
+        "company_id": "دانشکده کامپیوتر",
+        "created_at": "2022-06-05T10:58:04.639968937+04:30",
+        "updated_at": "2022-06-05T10:58:04.639968994+04:30"
       }
     ]
+  },
+  "info": {
+    "company_id": "1234698755",
+    "email": "123@gmail.com",
+    "first_name": "first-name",
+    "gender": "male",
+    "last_name": "last-name",
+    "password": "",
+    "personnel_id": "a.hallaji.b@gmail.com",
+    "phone_number": "0985858585",
+    "photo_url": "",
+    "role": "employee"
   }
 }

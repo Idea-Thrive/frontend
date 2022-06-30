@@ -47,11 +47,11 @@ const Idea: FC<IdeaProps> = ({ idea }) => {
       <Flex alignItems="center" w="full" justifyContent="space-between">
         <HStack alignItems="center" spacing={4}>
           <Heading size="md">{idea.title}</Heading>
-          <Text>{idea.creator}</Text>
+          <Text>{idea.creator_id}</Text>
         </HStack>
 
         <Box>
-          <Badge colorScheme={idea.category.color}>{idea.category.name}</Badge>
+          <Badge colorScheme="cyan">{idea.category}</Badge>
         </Box>
       </Flex>
       <Flex w="full" justify="space-between">
@@ -68,7 +68,9 @@ const Idea: FC<IdeaProps> = ({ idea }) => {
           <Heading size="md">
             <HStack spacing={2}>
               <Text display="inline">{t('score')}</Text>
-              <Text display="inline">{idea.upVotes - idea.downVotes}</Text>
+              <Text display="inline">
+                {idea.up_vote_count - idea.down_vote_count}
+              </Text>
             </HStack>
           </Heading>
         </Box>

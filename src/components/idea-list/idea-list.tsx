@@ -10,9 +10,9 @@ interface IdeaListProps {
 const IdeaList: FC<IdeaListProps> = ({ ideas }) => {
   return (
     <List spacing={4}>
-      {ideas.map((idea: IdeaType) => (
-        <ListItem key={`item-${idea.id}`}>
-          <Idea key={idea.id} idea={idea} />
+      {ideas.map((idea: IdeaType, index) => (
+        <ListItem key={`item-${idea.title}-${index}`}>
+          <Idea idea={idea} />
         </ListItem>
       ))}
     </List>

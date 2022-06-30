@@ -10,14 +10,22 @@ import Fonts from 'components/fonts';
 import useDidMount from 'hooks/use-did-mount';
 import { getConfig as requestConfig } from 'service/api-helper/boot';
 import { ERROR_UNAUTHORIZED } from 'service/error-codes';
+import { STATUS_OK } from 'constants/constants';
+import { useDispatch } from 'react-redux';
+import { updateUser } from 'store/slices/app-slice';
 
 const Boot: FC = () => {
+  const dispatch = useDispatch();
   const { direction } = getCurrentLanguage();
 
   const getConfig = async () => {
     try {
-      const response = await requestConfig();
-    //   console.log({ response });
+      const { status, data } = await requestConfig();
+
+      if (status === STATUS_OK) {
+        console.log(data);
+        dispatch(updateUser(data));
+      }
     } catch (err) {
       console.error(err);
     }
@@ -30,19 +38,26 @@ const Boot: FC = () => {
   return (
     <ChakraProvider theme={theme}>
       <Fonts />
-      <ReduxProvider store={store}>
-        <Container
-          className={direction === 'ltr' ? style.ltr : style.rtl}
-          h="100vh"
-          maxW="container.xl"
-          p={0}
-          centerContent
-        >
-          <Router></Router>
-        </Container>
-      </ReduxProvider>
+
+      <Container
+        className={direction === 'ltr' ? style.ltr : style.rtl}
+        h="100vh"
+        maxW="container.xl"
+        p={0}
+        centerContent
+      >
+        <Router></Router>
+      </Container>
     </ChakraProvider>
   );
 };
 
-export default Boot;
+function BootWithRedux() {
+  return (
+    <ReduxProvider store={store}>
+      <Boot />
+    </ReduxProvider>
+  );
+}
+
+export default BootWithRedux;

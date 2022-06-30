@@ -14,12 +14,11 @@ import { updateUser } from 'store/slices/app-slice';
 import SplashScreen from 'components/splash-screen';
 import t from 'i18n';
 import ErrorBoundary from 'components/error-boundary';
-import { AxiosError } from 'axios';
 import { logout, hasToken } from 'service/auth';
 
 const Boot: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<AxiosError | null>(null);
+  const [hasError, setHasError] = useState(false);
 
   const toast = useToast();
   const dispatch = useDispatch();
@@ -40,7 +39,7 @@ const Boot: FC = () => {
         logout();
         return;
       }
-      setError(error);
+      setHasError(true);
       toast({
         title: t('anErrorHasOccurred'),
         status: 'error',
@@ -66,7 +65,7 @@ const Boot: FC = () => {
     return <SplashScreen />;
   }
 
-  if (Boolean(error)) {
+  if (hasError) {
     return <ErrorBoundary onTryAgainClick={handleTryAgainClick} />;
   }
 

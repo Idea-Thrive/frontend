@@ -12,10 +12,10 @@ async function render() {
   await setup();
 
   root.render(
-    <React.StrictMode>
+    <React.Fragment>
       <ColorModeScript />
       <App />
-    </React.StrictMode>,
+    </React.Fragment>,
   );
 }
 

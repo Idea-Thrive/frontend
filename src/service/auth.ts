@@ -17,4 +17,8 @@ function getToken(): string | undefined {
   return getItem(storageKeys.token);
 }
 
-export { hasToken, removeToken, setToken, getToken };
+function logout(): void {
+  removeToken();
+}
+
+export { hasToken, removeToken, setToken, getToken, logout };

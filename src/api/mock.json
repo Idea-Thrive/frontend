@@ -15,7 +15,7 @@
         "title": "کشتن سالاری‌فرد",
         "category": "بهبود",
         "description": "او یک بی ناموس است",
-        "up_vote_count": 100,
+        "up_vote_count": 10,
         "down_vote_count": -5,
         "creator_id": "امیرحسین نوری",
         "company_id": "دانشکده کامپیوتر",
@@ -26,7 +26,7 @@
         "title": "کشتن سالاری‌فرد",
         "category": "بهبود",
         "description": "او یک بی ناموس است",
-        "up_vote_count": 100,
+        "up_vote_count": 1000,
         "down_vote_count": -5,
         "creator_id": "امیرحسین نوری",
         "company_id": "دانشکده کامپیوتر",
@@ -35,7 +35,29 @@
       },
       {
         "title": "کشتن سالاری‌فرد",
-        "category": "بهبود",
+        "category": "سایر",
+        "description": "او یک بی ناموس است",
+        "up_vote_count": 20,
+        "down_vote_count": -7,
+        "creator_id": "امیرحسین نوری",
+        "company_id": "دانشکده کامپیوتر",
+        "created_at": "2022-06-05T10:58:04.639968937+04:30",
+        "updated_at": "2022-06-05T10:58:04.639968994+04:30"
+      },
+      {
+        "title": "کشتن سالاری‌فرد",
+        "category": "سایر",
+        "description": "او یک بی ناموس است",
+        "up_vote_count": 12,
+        "down_vote_count": -5,
+        "creator_id": "امیرحسین نوری",
+        "company_id": "دانشکده کامپیوتر",
+        "created_at": "2022-06-05T10:58:04.639968937+04:30",
+        "updated_at": "2022-06-05T10:58:04.639968994+04:30"
+      },
+      {
+        "title": "کشتن سالاری‌فرد",
+        "category": "سایر",
         "description": "او یک بی ناموس است",
         "up_vote_count": 100,
         "down_vote_count": -5,
@@ -46,7 +68,7 @@
       },
       {
         "title": "کشتن سالاری‌فرد",
-        "category": "بهبود",
+        "category": "پیشرفت",
         "description": "او یک بی ناموس است",
         "up_vote_count": 100,
         "down_vote_count": -5,
@@ -56,36 +78,14 @@
         "updated_at": "2022-06-05T10:58:04.639968994+04:30"
       },
       {
-        "title": "کشتن سالاری‌فرد",
-        "category": "بهبود",
+        "title": "کشتن سالاری‌فرددددد",
+        "category": "پیشرفت",
         "description": "او یک بی ناموس است",
         "up_vote_count": 100,
-        "down_vote_count": -5,
+        "down_vote_count": -1000,
         "creator_id": "امیرحسین نوری",
         "company_id": "دانشکده کامپیوتر",
-        "created_at": "2022-06-05T10:58:04.639968937+04:30",
-        "updated_at": "2022-06-05T10:58:04.639968994+04:30"
-      },
-      {
-        "title": "کشتن سالاری‌فرد",
-        "category": "بهبود",
-        "description": "او یک بی ناموس است",
-        "up_vote_count": 100,
-        "down_vote_count": -5,
-        "creator_id": "امیرحسین نوری",
-        "company_id": "دانشکده کامپیوتر",
-        "created_at": "2022-06-05T10:58:04.639968937+04:30",
-        "updated_at": "2022-06-05T10:58:04.639968994+04:30"
-      },
-      {
-        "title": "کشتن سالاری‌فرد",
-        "category": "بهبود",
-        "description": "او یک بی ناموس است",
-        "up_vote_count": 100,
-        "down_vote_count": -5,
-        "creator_id": "امیرحسین نوری",
-        "company_id": "دانشکده کامپیوتر",
-        "created_at": "2022-06-05T10:58:04.639968937+04:30",
+        "created_at": "2022-06-22T10:58:04.639968937+04:30",
         "updated_at": "2022-06-05T10:58:04.639968994+04:30"
       }
     ]
@@ -101,5 +101,22 @@
     "phone_number": "0985858585",
     "photo_url": "",
     "role": "employee"
-  }
+  },
+  "categories": [
+    {
+      "name": "سایر",
+      "created_at": "2022-06-05T17:46:41.36447384+04:30",
+      "updated_at": "2022-06-05T17:46:41.36447389+04:30"
+    },
+    {
+      "name": "بهبود",
+      "created_at": "2022-06-05T17:46:41.36447384+04:30",
+      "updated_at": "2022-06-05T17:46:41.36447389+04:30"
+    },
+    {
+      "name": "پیشرفت",
+      "created_at": "2022-06-05T17:46:41.36447384+04:30",
+      "updated_at": "2022-06-05T17:46:41.36447389+04:30"
+    }
+  ]
 }

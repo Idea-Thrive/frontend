@@ -27,6 +27,7 @@ const keys: Record<string, string> = {
   filterByStatus: 'فیلتر بر اساس وضعیت',
   createdAt: 'ایجاد شده در: ',
   menu: 'منو',
+  noIdea: 'ایده‌ای وجود ندارد',
 };
 
 export default keys;

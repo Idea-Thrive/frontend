@@ -28,6 +28,7 @@ const keys: Record<string, string> = {
   filterByStatus: 'Filter by status',
   createdAt: 'Created At: ',
   menu: 'Menu',
+  noIdea: 'There is no idea yet',
 };
 
 export default keys;

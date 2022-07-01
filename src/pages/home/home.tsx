@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Box, useToast, Button, Text, Flex } from '@chakra-ui/react';
+import { useToast, Button, Text, Flex } from '@chakra-ui/react';
 import DashboardDrawer from 'components/dashboard-drawer';
 import { HiPlus } from 'react-icons/hi';
 import { getIdeas } from 'service/api-helper/home';
@@ -12,6 +12,7 @@ import Filter from 'components/filter';
 import { useDispatch } from 'react-redux';
 import { updateIdeas as updateStoreIdeas } from 'store/slices/app-slice';
 import Header from 'components/header';
+import Page from 'components/page';
 
 function Home() {
   const navigate = useNavigate();
@@ -64,7 +65,7 @@ function Home() {
   };
 
   return (
-    <Box px={{ base: 5, lg: 0 }} py={{ base: 3, md: 10 }} w="full">
+    <Page>
       <DashboardDrawer visibility={isMenuOpen} title="title" />
 
       <Header />
@@ -85,7 +86,7 @@ function Home() {
         <Filter />
       </Flex>
       <IdeaList ideas={filteredIdeas} />
-    </Box>
+    </Page>
   );
 }
 

@@ -12,7 +12,7 @@ import {
 import { Idea as IdeaType } from 'types';
 import { useNavigate } from 'react-router-dom';
 import paths from 'router/paths';
-import t from 'i18n';
+import { FiStar } from 'react-icons/fi';
 
 interface IdeaProps {
   idea: IdeaType;
@@ -67,10 +67,10 @@ const Idea: FC<IdeaProps> = ({ idea }) => {
         <Box>
           <Heading size="md">
             <HStack spacing={2}>
-              <Text display="inline">{t('score')}</Text>
               <Text display="inline">
                 {idea.up_vote_count - idea.down_vote_count}
               </Text>
+              <FiStar size={16} color="gold" />
             </HStack>
           </Heading>
         </Box>

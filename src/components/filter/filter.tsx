@@ -173,8 +173,11 @@ const Filter: FC<FilterProps> = () => {
 
   const renderSortOptions = () => (
     <MenuOptionGroup title={t('order')} onChange={handleSortingOptionChange}>
-      {sortOptions.map((sortOption) => (
-        <MenuItemOption value={sortOption.text}>
+      {sortOptions.map((sortOption, index) => (
+        <MenuItemOption
+          key={`item-${sortOption.text}-${index}`}
+          value={sortOption.text}
+        >
           {t(sortOption.text)}
         </MenuItemOption>
       ))}

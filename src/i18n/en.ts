@@ -22,7 +22,10 @@ const keys: Record<string, string> = {
   approved: 'Approved',
   topRated: 'Top Rated',
   newest: 'Newest',
-  clearFilter: 'Clear Filter',
+  clearFilter: 'Clear Filters',
+  byCategory: 'Filter By Category',
+  order: 'Order',
+  filterByStatus: 'Filter by status',
 };
 
 export default keys;

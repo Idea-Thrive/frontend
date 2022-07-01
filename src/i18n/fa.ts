@@ -21,7 +21,10 @@ const keys: Record<string, string> = {
   approved: 'تایید شده',
   topRated: 'بیش‌ترین امتیاز',
   newest: 'جدیدترین',
-  clearFilter: 'پاک کردن فیلتر',
+  clearFilter: 'پاک کردن فیلترها',
+  byCategory: 'فیلتر بر اساس دسته‌بندی',
+  order: 'ترتیب',
+  filterByStatus: 'فیلتر بر اساس وضعیت',
 };
 
 export default keys;

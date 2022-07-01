@@ -1,6 +1,6 @@
 export type Category = {
   name: string;
-  color: string;
+  // color: string;
 };
 
 export interface Idea {
@@ -15,8 +15,11 @@ export interface Idea {
   updated_at: string;
 }
 
-export enum FilterBy {
-  APPROVED = 'approved',
+export enum SortingOption {
   TOP_RATED = 'topRated',
   NEWEST = 'newest',
+}
+
+export enum Status {
+  APPROVED = 'approved',
 }

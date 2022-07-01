@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import {
   Drawer,
   DrawerBody,
-  DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
@@ -26,11 +25,9 @@ import { useDispatch } from 'react-redux';
 import { toggleMenu } from 'store/slices/app-slice';
 import useStateToProps from 'store/hooks/use-state-to-props';
 
-interface DashboardDrawerProps {
-  title?: string;
-}
+interface DashboardDrawerProps {}
 
-const DashboardDrawer: FC<DashboardDrawerProps> = ({ title = 'menu' }) => {
+const DashboardDrawer: FC<DashboardDrawerProps> = () => {
   const dispatch = useDispatch();
   const { toggleColorMode } = useColorMode();
   const size = useBreakpointValue({ base: 'full', lg: 'xs' });
@@ -101,9 +98,8 @@ const DashboardDrawer: FC<DashboardDrawerProps> = ({ title = 'menu' }) => {
       <DrawerOverlay />
       <DrawerContent>
         <DrawerCloseButton />
-        <DrawerHeader>{t(title)}</DrawerHeader>
 
-        <DrawerBody mt={3}>
+        <DrawerBody mt={10}>
           <List>
             {items.map((item, index) => (
               <Button

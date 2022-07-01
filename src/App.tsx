@@ -15,7 +15,7 @@ export const App = () => {
   }
   return (
     <ChakraProvider theme={theme}>
-      <Boot />;
+      <Boot />
     </ChakraProvider>
   );
 };

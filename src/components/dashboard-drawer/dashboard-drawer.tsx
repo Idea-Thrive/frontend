@@ -24,17 +24,21 @@ import paths from 'router/paths';
 import { removeToken } from 'service/auth';
 import { useDispatch } from 'react-redux';
 import { toggleMenu } from 'store/slices/app-slice';
+import useStateToProps from 'store/hooks/use-state-to-props';
 
 interface DashboardDrawerProps {
-  visibility: boolean;
-  title: string;
+  title?: string;
 }
 
-const DashboardDrawer: FC<DashboardDrawerProps> = ({ visibility, title }) => {
+const DashboardDrawer: FC<DashboardDrawerProps> = ({ title = 'menu' }) => {
   const dispatch = useDispatch();
   const { toggleColorMode } = useColorMode();
   const size = useBreakpointValue({ base: 'full', lg: 'xs' });
   const toggleThemeIcon = useColorModeValue(FaMoon, FaSun);
+
+  const { isMenuOpen } = useStateToProps((state: any) => ({
+    isMenuOpen: state.app.global.isMenuOpen,
+  }));
 
   const navigate = useNavigate();
 
@@ -89,7 +93,7 @@ const DashboardDrawer: FC<DashboardDrawerProps> = ({ visibility, title }) => {
 
   return (
     <Drawer
-      isOpen={visibility}
+      isOpen={isMenuOpen}
       placement={getDrawerPlacement()}
       onClose={handleCloseDrawer}
       size={size}

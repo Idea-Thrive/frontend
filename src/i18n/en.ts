@@ -26,6 +26,8 @@ const keys: Record<string, string> = {
   byCategory: 'Filter By Category',
   order: 'Order',
   filterByStatus: 'Filter by status',
+  createdAt: 'Created At: ',
+  menu: 'Menu',
 };
 
 export default keys;

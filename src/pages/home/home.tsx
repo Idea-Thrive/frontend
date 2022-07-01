@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useToast, Button, Text, Flex } from '@chakra-ui/react';
-import DashboardDrawer from 'components/dashboard-drawer';
 import { HiPlus } from 'react-icons/hi';
 import { getIdeas } from 'service/api-helper/home';
 import t from 'i18n';
@@ -19,13 +18,10 @@ function Home() {
   const dispatch = useDispatch();
   const toast = useToast();
 
-  const { companyId, filteredIdeas, isMenuOpen } = useStateToProps(
-    (state: any) => ({
-      filteredIdeas: state.app.filteredIdeas,
-      companyId: state.app.user?.company_id,
-      isMenuOpen: state.app.global.isMenuOpen,
-    }),
-  );
+  const { companyId, filteredIdeas } = useStateToProps((state: any) => ({
+    filteredIdeas: state.app.filteredIdeas,
+    companyId: state.app.user?.company_id,
+  }));
 
   const updateIdeas = async () => {
     try {
@@ -66,8 +62,6 @@ function Home() {
 
   return (
     <Page>
-      <DashboardDrawer visibility={isMenuOpen} title="title" />
-
       <Header />
       <Flex
         mb={3}

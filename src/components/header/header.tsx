@@ -11,6 +11,7 @@ import {
   Divider,
 } from '@chakra-ui/react';
 import { FiMenu } from 'react-icons/fi';
+import DashboardDrawer from 'components/dashboard-drawer';
 
 interface HeaderProps {
   shouldRenderAvatar?: boolean;
@@ -20,11 +21,8 @@ const Header: FC<HeaderProps> = ({ shouldRenderAvatar = true }) => {
   const dispatch = useDispatch();
 
   const { firstName, lastName } = useStateToProps((state: any) => ({
-    filteredIdeas: state.app.filteredIdeas,
     firstName: state.app.user?.first_name,
     lastName: state.app.user?.last_name,
-    companyId: state.app.user?.company_id,
-    isMenuOpen: state.app.global.isMenuOpen,
   }));
 
   const handleMenuClick = () => {
@@ -33,6 +31,7 @@ const Header: FC<HeaderProps> = ({ shouldRenderAvatar = true }) => {
 
   return (
     <>
+      <DashboardDrawer />
       <Flex justifyContent="space-between" alignItems="center">
         {shouldRenderAvatar && (
           <HStack spacing={4}>

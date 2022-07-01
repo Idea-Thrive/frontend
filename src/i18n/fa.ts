@@ -25,6 +25,8 @@ const keys: Record<string, string> = {
   byCategory: 'فیلتر بر اساس دسته‌بندی',
   order: 'ترتیب',
   filterByStatus: 'فیلتر بر اساس وضعیت',
+  createdAt: 'ایجاد شده در: ',
+  menu: 'منو',
 };
 
 export default keys;

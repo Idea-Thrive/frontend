@@ -57,7 +57,7 @@ const appSlice = createSlice({
       state.filteredIdeas = action.payload;
     },
 
-    toggleMenu(state, action: PayloadAction<void>) {
+    toggleMenu(state) {
       state.global.isMenuOpen = !state.global.isMenuOpen;
     },
   },

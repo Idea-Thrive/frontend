@@ -14,10 +14,15 @@ type User = {
   role: string | null;
 };
 
+type Global = {
+  isMenuOpen: boolean;
+};
+
 type App = {
   user: User;
   ideas: Array<Idea>;
   filteredIdeas: Array<Idea>;
+  global: Global;
 };
 
 const initialState: App = {
@@ -35,6 +40,7 @@ const initialState: App = {
   },
   ideas: [],
   filteredIdeas: [],
+  global: { isMenuOpen: false },
 };
 
 const appSlice = createSlice({
@@ -50,10 +56,14 @@ const appSlice = createSlice({
     updateFilteredIdeas(state, action: PayloadAction<Array<Idea>>) {
       state.filteredIdeas = action.payload;
     },
+
+    toggleMenu(state, action: PayloadAction<void>) {
+      state.global.isMenuOpen = !state.global.isMenuOpen;
+    },
   },
 });
 
-export const { updateUser, updateIdeas, updateFilteredIdeas } =
+export const { updateUser, updateIdeas, updateFilteredIdeas, toggleMenu } =
   appSlice.actions;
 
 export default appSlice.reducer;

@@ -22,18 +22,16 @@ import { FiLogOut, FiSettings } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import paths from 'router/paths';
 import { removeToken } from 'service/auth';
+import { useDispatch } from 'react-redux';
+import { toggleMenu } from 'store/slices/app-slice';
 
 interface DashboardDrawerProps {
   visibility: boolean;
-  onVisibilityChange: () => void;
   title: string;
 }
 
-const DashboardDrawer: FC<DashboardDrawerProps> = ({
-  visibility,
-  onVisibilityChange,
-  title,
-}) => {
+const DashboardDrawer: FC<DashboardDrawerProps> = ({ visibility, title }) => {
+  const dispatch = useDispatch();
   const { toggleColorMode } = useColorMode();
   const size = useBreakpointValue({ base: 'full', lg: 'xs' });
   const toggleThemeIcon = useColorModeValue(FaMoon, FaSun);
@@ -87,11 +85,13 @@ const DashboardDrawer: FC<DashboardDrawerProps> = ({
     return direction === 'rtl' ? 'right' : 'left';
   };
 
+  const handleCloseDrawer = () => dispatch(toggleMenu());
+
   return (
     <Drawer
       isOpen={visibility}
       placement={getDrawerPlacement()}
-      onClose={onVisibilityChange}
+      onClose={handleCloseDrawer}
       size={size}
     >
       <DrawerOverlay />

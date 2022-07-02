@@ -51,7 +51,7 @@ const Idea: FC<IdeaProps> = ({ idea }) => {
         </HStack>
 
         <Box>
-          <Badge colorScheme="cyan">{idea.category}</Badge>
+          <Badge colorScheme="cyan">{idea.category_name}</Badge>
         </Box>
       </Flex>
       <Flex w="full" justify="space-between">

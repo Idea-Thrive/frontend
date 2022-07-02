@@ -75,7 +75,7 @@ const Filter: FC<FilterProps> = () => {
   };
 
   const filterByCategory = (list: Array<Idea>): Array<Idea> =>
-    list.filter((item) => selectedCategories.includes(item.category));
+    list.filter((item) => selectedCategories.includes(item.category_name));
 
   const shouldSortByRate = () =>
     selectedSortingOption === SortingOption.TOP_RATED;

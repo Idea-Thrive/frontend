@@ -34,7 +34,7 @@ const DashboardDrawer: FC<DashboardDrawerProps> = () => {
   const size = useBreakpointValue({ base: 'full', lg: 'xs' });
   const toggleThemeIcon = useColorModeValue(FaMoon, FaSun);
 
-  const { isMenuOpen } = useStateToProps((state: any) => ({
+  const { isMenuOpen, role } = useStateToProps((state: any) => ({
     isMenuOpen: state.app.global.isMenuOpen,
     role: state.app?.user?.role,
   }));
@@ -55,7 +55,7 @@ const DashboardDrawer: FC<DashboardDrawerProps> = () => {
   };
 
   const shouldRenderItem = ({ roles }: { roles: Array<Role> }): boolean => {
-    return roles.includes(role as Role);
+    return roles.includes(role);
   };
 
   const items: Array<{

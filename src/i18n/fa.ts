@@ -28,6 +28,11 @@ const keys: Record<string, string> = {
   createdAt: 'ایجاد شده در: ',
   menu: 'منو',
   noIdea: 'ایده‌ای وجود ندارد',
+  companies: 'شرکت‌ها',
+  categories: 'دسته‌بندی‌ها',
+  criteria: 'شاخص',
+  users: 'کاربران',
+  profile: 'پروفایل',
 };
 
 export default keys;

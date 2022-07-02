@@ -23,3 +23,8 @@ export enum SortingOption {
 export enum Status {
   APPROVED = 'approved',
 }
+
+export enum Role {
+  EMPLOYEE = 'employee',
+  EMPLOYER = 'employer',
+}

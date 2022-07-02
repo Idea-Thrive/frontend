@@ -29,6 +29,11 @@ const keys: Record<string, string> = {
   createdAt: 'Created At: ',
   menu: 'Menu',
   noIdea: 'There is no idea yet',
+  companies: 'Companies',
+  categories: 'Categories',
+  criteria: 'Criteria',
+  users: 'Users',
+  profile: 'Profile',
 };
 
 export default keys;

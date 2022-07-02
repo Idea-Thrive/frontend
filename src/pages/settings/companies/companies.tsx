@@ -12,17 +12,48 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
+  List,
+  ListItem,
+  Flex,
+  Text,
+  Skeleton,
 } from '@chakra-ui/react';
 import useInput from 'hooks/use-input';
 import { isRequired, isNumber } from 'utils/validate';
 import t from 'i18n';
-import { submitCompany } from 'service/api-helper/company';
+import {
+  submitCompany,
+  getAllCompanies,
+  deleteCompany,
+} from 'service/api-helper/company';
 import { STATUS_OK } from 'constants/';
+import { Company } from 'types';
+import useDidMount from 'hooks/use-did-mount';
+import { toggleGlobalLoading } from 'store/slices/app-slice';
+import { useDispatch } from 'react-redux';
 
 const Companies: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [companies, setCompanies] = useState<Array<Company>>([]);
+  const [getCompanyLoading, setGetCompanyLoading] = useState(true);
 
   const toast = useToast();
+  const dispatch = useDispatch();
+
+  const initializeCompanies = async () => {
+    setGetCompanyLoading(true);
+    try {
+      const { data } = await getAllCompanies();
+      setCompanies(data);
+      setGetCompanyLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useDidMount(() => {
+    initializeCompanies();
+  });
 
   const ownerFirstNameInput = useInput({
     initialValue: '',
@@ -95,6 +126,7 @@ const Companies: FC = () => {
         });
 
         clearInputs();
+        await initializeCompanies();
       }
     } catch (error: any) {
       toast({
@@ -109,8 +141,72 @@ const Companies: FC = () => {
     }
   };
 
+  const handleDeleteCompanyClick = async (id: string) => {
+    dispatch(toggleGlobalLoading());
+    try {
+      const { status } = await deleteCompany({ companyId: id });
+
+      if (status === 204) {
+        toast({
+          title: t('companyDeletedSuccessfully'),
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+          position: 'top',
+        });
+
+        initializeCompanies();
+      }
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: t('anErrorHasOccurred'),
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+        position: 'bottom',
+      });
+    } finally {
+      dispatch(toggleGlobalLoading());
+    }
+  };
+
   return (
-    <Accordion w="full" textAlign="center">
+    <Accordion w="full" textAlign="center" allowToggle allowMultiple>
+      <AccordionItem>
+        <AccordionButton p={4}>
+          <Heading size="md">{t('existingCompanies')}</Heading>
+          <AccordionIcon />
+        </AccordionButton>
+
+        <AccordionPanel shadow="md" pb={4}>
+          <List textAlign="start">
+            <Skeleton isLoaded={!getCompanyLoading}>
+              {companies.map((company: Company, index) => (
+                <ListItem
+                  key={`item-${company.name}-${index}`}
+                  mb={2}
+                  borderRadius="lg"
+                  padding={3}
+                  border="1px"
+                >
+                  <Flex alignItems="center" justifyContent="space-between">
+                    <Text fontWeight="bold">{company.name}</Text>
+                    <Button
+                      onClick={() => handleDeleteCompanyClick(company.id)}
+                      variant="solid"
+                      backgroundColor="red.500"
+                    >
+                      {t('delete')}
+                    </Button>
+                  </Flex>
+                </ListItem>
+              ))}
+            </Skeleton>
+          </List>
+        </AccordionPanel>
+      </AccordionItem>
+
       <AccordionItem>
         <AccordionButton p={4}>
           <Heading size="md">{t('addNewCompany')}</Heading>

@@ -52,6 +52,10 @@ const keys: Record<string, string> = {
   categoryNameIsRequired: 'Category name is required',
   companySubmittedSuccessfully: 'Company submitted successfully',
   categorySubmittedSuccessfully: 'Category submitted successfully',
+  existingCriteria: 'Existing Criteria',
+  addNewCriteria: 'Add New Critera',
+  existingCompanies: 'Existing Companies',
+  companyDeletedSuccessfully: 'Company deleted successfully',
 };
 
 export default keys;

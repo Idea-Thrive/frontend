@@ -7,6 +7,10 @@ type SubmitCompanyArgs = {
   owner_last_name: string;
 };
 
+type DeleteCompanyArgs = {
+  companyId: string;
+};
+
 export function submitCompany({
   name,
 
@@ -21,4 +25,12 @@ export function submitCompany({
     owner_last_name,
     owner_national_id,
   });
+}
+
+export function getAllCompanies(): Promise<any> {
+  return request.get('companies');
+}
+
+export function deleteCompany({ companyId }: DeleteCompanyArgs): Promise<any> {
+  return request.delete(`companies/${companyId}`);
 }

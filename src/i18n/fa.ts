@@ -51,6 +51,10 @@ const keys: Record<string, string> = {
   categoryNameIsRequired: 'نام دسته‌بندی الزامی است',
   companySubmittedSuccessfully: 'شرکت با موفقیت ثبت شد',
   categorySubmittedSuccessfully: 'دسته‌بندی با موفقیت ثبت شد',
+  existingCriteria: 'شاخص‌های موجود',
+  addNewCriteria: 'اضافه‌کردن شاخص جدید',
+  existingCompanies: 'شرکت‌های موجود',
+  companyDeletedSuccessfully: 'شرکت با موفقیت حذف شد',
 };
 
 export default keys;

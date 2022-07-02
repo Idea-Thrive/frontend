@@ -5,7 +5,7 @@ export type Category = {
 
 export interface Idea {
   title: string;
-  category: string;
+  category_name: string;
   description: string;
   score: number;
   creator_id: string;
@@ -27,3 +27,14 @@ export enum Role {
   EMPLOYEE = 'employee',
   EMPLOYER = 'employer',
 }
+
+export type Company = {
+  id: string;
+  name: string;
+  logo_url: string;
+  owner_national_id: string;
+  owner_first_name: string;
+  owner_last_name: string;
+  created_at: string;
+  updated_at: string;
+};

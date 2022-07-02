@@ -16,6 +16,7 @@ type User = {
 
 type Global = {
   isMenuOpen: boolean;
+  globalLoading: boolean;
 };
 
 type App = {
@@ -40,7 +41,7 @@ const initialState: App = {
   },
   ideas: [],
   filteredIdeas: [],
-  global: { isMenuOpen: false },
+  global: { isMenuOpen: false, globalLoading: false },
 };
 
 const appSlice = createSlice({
@@ -60,10 +61,19 @@ const appSlice = createSlice({
     toggleMenu(state) {
       state.global.isMenuOpen = !state.global.isMenuOpen;
     },
+
+    toggleGlobalLoading(state) {
+      state.global.globalLoading = !state.global.globalLoading;
+    },
   },
 });
 
-export const { updateUser, updateIdeas, updateFilteredIdeas, toggleMenu } =
-  appSlice.actions;
+export const {
+  updateUser,
+  updateIdeas,
+  updateFilteredIdeas,
+  toggleMenu,
+  toggleGlobalLoading,
+} = appSlice.actions;
 
 export default appSlice.reducer;

@@ -14,6 +14,7 @@ import { updateUser } from 'store/slices/app-slice';
 import SplashScreen from 'components/splash-screen';
 import ErrorBoundary from 'components/error-boundary';
 import { logout, hasToken } from 'service/auth';
+import GlobalLoading from 'components/loading';
 
 const Boot: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -63,6 +64,7 @@ const Boot: FC = () => {
   return (
     <>
       <Fonts />
+      <GlobalLoading />
       <Container
         className={direction === 'ltr' ? style.ltr : style.rtl}
         h="100vh"

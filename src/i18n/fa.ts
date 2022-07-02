@@ -33,6 +33,16 @@ const keys: Record<string, string> = {
   criteria: 'شاخص',
   users: 'کاربران',
   profile: 'پروفایل',
+  ownerFirstNameIsRequired: 'نام صاحب شرکت الزامی می‌باشد',
+  ownerLastNameIsRequired: 'نام‌خانوادگی صاحب شرکت الزامی می‌باشد',
+  ownerNationalIdShouldBeNumber: 'کد‌ملی صاحب شرمت باید عدد باشد',
+  ownerNameIsRequired: 'نام شرکت الزامی می‌باشد',
+  companyName: 'نام شرکت',
+  ownerFirstName: 'نام صاحب شرکت',
+  ownerLastName: 'نام‌خانوادگی صاحب شرکت',
+  ownerNationalId: 'کد‌ملی صاحب شرکت',
+  addNewCompany: 'اضافه کردن شرکت جدید',
+  submitCompany: 'ثبت شرکت',
 };
 
 export default keys;

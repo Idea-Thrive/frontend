@@ -34,6 +34,16 @@ const keys: Record<string, string> = {
   criteria: 'Criteria',
   users: 'Users',
   profile: 'Profile',
+  ownerFirstNameIsRequired: 'Owner first name is required',
+  ownerLastNameIsRequired: 'Owner last name is required',
+  ownerNationalIdShouldBeNumber: 'Owner national id should be number',
+  ownerNameIsRequired: 'Company name is required',
+  companyName: 'Company name',
+  ownerFirstName: 'Owner first name',
+  ownerLastName: 'Owner last name',
+  ownerNationalId: 'Owner national ID',
+  addNewCompany: 'Add New Company',
+  submitCompany: 'Submit Company',
 };
 
 export default keys;

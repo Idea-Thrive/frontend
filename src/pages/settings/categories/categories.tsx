@@ -21,7 +21,6 @@ import {
 import useInput from 'hooks/use-input';
 import { isRequired } from 'utils/validate';
 import t from 'i18n';
-import { STATUS_OK } from 'constants/';
 import {
   getAllCategories,
   createCategory,

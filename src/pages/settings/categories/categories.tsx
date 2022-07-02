@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import {
   Input,
   FormControl,
@@ -61,9 +61,11 @@ const Categories: FC = () => {
     }
   };
 
-  useDidMount(() => {
-    initializeAllCategories();
-  });
+  useEffect(() => {
+    if (companyId) {
+      initializeAllCategories();
+    }
+  }, [companyId]);
 
   const toast = useToast();
 

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useToast, Button, Text, Flex } from '@chakra-ui/react';
 import { HiPlus } from 'react-icons/hi';
 import { getIdeas } from 'service/api-helper/home';
@@ -12,11 +12,14 @@ import { useDispatch } from 'react-redux';
 import { updateIdeas as updateStoreIdeas } from 'store/slices/app-slice';
 import Header from 'components/header';
 import Page from 'components/page';
+import SplashScreen from 'components/splash-screen';
 
 function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const toast = useToast();
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const { companyId, filteredIdeas } = useStateToProps((state: any) => ({
     filteredIdeas: state.app.filteredIdeas,
@@ -27,12 +30,12 @@ function Home() {
     try {
       const { data } = await getIdeas({
         companyId,
-        offset: 0,
-        size: 100,
-        category: 'shit',
+        category: '',
       });
 
       dispatch(updateStoreIdeas(data));
+
+      setIsLoading(false);
     } catch (error) {
       toast({
         title: t('anErrorHasOccurred'),
@@ -53,6 +56,10 @@ function Home() {
   const handleCreateNewIdeaClick = () => {
     navigate(paths.createNewIdea);
   };
+
+  if (isLoading) {
+    return <SplashScreen />;
+  }
 
   return (
     <Page>

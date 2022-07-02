@@ -12,6 +12,7 @@ type useInputReturn = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   error: string | null;
   validate: () => boolean;
+  clear: () => void;
 };
 
 function useInput({
@@ -43,11 +44,16 @@ function useInput({
     return validationResult;
   };
 
+  const clear = () => {
+    setValue('');
+  };
+
   return {
     value,
     onChange: handleChange,
     error,
     validate,
+    clear,
   };
 }
 

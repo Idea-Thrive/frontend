@@ -87,7 +87,7 @@ const Companies: FC = () => {
 
       if (status === STATUS_OK) {
         toast({
-          title: t('anErrorHasOccurred'),
+          title: t('companySubmittedSuccessfully'),
           status: 'success',
           duration: 3000,
           isClosable: true,

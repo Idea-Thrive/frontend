@@ -57,6 +57,22 @@ const keys: Record<string, string> = {
   existingCompanies: 'Existing Companies',
   companyDeletedSuccessfully: 'Company deleted successfully',
   categoryDeletedSuccessfully: 'Category deleted successfully',
+  categoryColor: 'Category color',
+  red: 'Red',
+  blue: 'Blue',
+  green: 'Green',
+  yellow: 'Yellow',
+  selectAColor: 'Select a color',
+  title: 'Title',
+  category: 'Category',
+  description: 'Description',
+  titleIsRequired: 'Title is required',
+  categoryIsRequired: 'Category is required',
+  descriptionIsRequired: 'Description is required',
+  creatingNewIdea: 'Creating New Idea',
+  descriptionPlaceholder: 'Write a short description about your idea',
+  submitIdea: 'Submit Idea',
+  ideaSubmittedSuccessfully: 'Idea submitted successfully',
 };
 
 export default keys;

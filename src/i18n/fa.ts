@@ -56,6 +56,22 @@ const keys: Record<string, string> = {
   existingCompanies: 'شرکت‌های موجود',
   companyDeletedSuccessfully: 'شرکت با موفقیت حذف شد',
   categoryDeletedSuccessfully: 'دسته‌بندی با موفقیت حذف شد',
+  categoryColor: 'رنگ دسته‌بندی',
+  red: 'قرمز',
+  blue: 'آبی',
+  green: 'سبز',
+  yellow: 'زرد',
+  selectAColor: 'یک رنگ انتخاب کنید',
+  title: 'موضوع',
+  category: 'دسته‌بندی',
+  description: 'توضیحات',
+  titleIsRequired: 'وارد کردن موضوع الزامی می‌باشد',
+  categoryIsRequired: 'وارد کردن دسته‌بندی الزامی می‌باشد',
+  descriptionIsRequired: 'وارد کردن توضییحات الزامی می‌باشد',
+  creatingNewIdea: 'ساخت ایده جدید',
+  descriptionPlaceholder: 'توضیح مختصری از ایده خود بنویسید',
+  submitIdea: 'ثبت ایده',
+  ideaSubmittedSuccessfully: 'ایده با موفقیت ثبت شد',
 };
 
 export default keys;

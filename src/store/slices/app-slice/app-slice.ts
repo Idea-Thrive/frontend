@@ -12,6 +12,7 @@ type User = {
   phone_number: string | null;
   photo_url: string | null;
   role: string | null;
+  id: string | null;
 };
 
 type Global = {
@@ -38,6 +39,7 @@ const initialState: App = {
     phone_number: null,
     photo_url: null,
     role: null,
+    id: null,
   },
   ideas: [],
   filteredIdeas: [],

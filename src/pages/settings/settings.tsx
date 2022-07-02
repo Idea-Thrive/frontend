@@ -6,18 +6,15 @@ import {
   Tab,
   TabPanel,
   useMediaQuery,
-  useBreakpointValue,
 } from '@chakra-ui/react';
 import Page from 'components/page';
 import Header from 'components/header';
 import { Role } from 'types/types';
-import useStateToProps from 'store/hooks/use-state-to-props';
 import SplashScreen from 'components/splash-screen';
 import t, { getCurrentLanguage } from 'i18n';
 import Categories from './categories/categories';
 import Criteria from './criteria/criteria';
 import Companies from './companies/companies';
-import Profile from './profile/profile';
 import Users from './users/users';
 
 const Settings: FC = () => {
@@ -27,18 +24,7 @@ const Settings: FC = () => {
 
   const { direction } = getCurrentLanguage();
 
-  // const { role } = useStateToProps((state: any) => ({
-  //   role: state.app?.user?.role,
-  // }));
-
   const role = 'employer';
-
-  const shouldRenderItem = ({ role: requiredRole }: { role: Role }) => {
-    if (role === Role.EMPLOYER) {
-      return true;
-    }
-    return role === requiredRole;
-  };
 
   const getTabOrientation = () => (isLargerThan700 ? 'vertical' : 'horizontal');
 
@@ -47,7 +33,6 @@ const Settings: FC = () => {
     { label: 'categories', role: Role.EMPLOYER },
     { label: 'criteria', role: Role.EMPLOYER },
     { label: 'users', role: Role.EMPLOYER },
-    { label: 'profile', role: Role.EMPLOYEE },
   ];
 
   const tabPanelItems = [
@@ -83,14 +68,6 @@ const Settings: FC = () => {
       ),
       role: Role.EMPLOYER,
     },
-    {
-      component: (index: number) => (
-        <TabPanel key={index}>
-          <Profile />
-        </TabPanel>
-      ),
-      role: Role.EMPLOYEE,
-    },
   ];
 
   if (!role) {
@@ -107,18 +84,13 @@ const Settings: FC = () => {
         size={isLargerThan470 ? 'lg' : 'sm'}
       >
         <TabList>
-          {tabListItems.map(
-            (tabList, index) =>
-              shouldRenderItem(tabList) && (
-                <Tab key={index}>{t(tabList.label)}</Tab>
-              ),
-          )}
+          {tabListItems.map((tabList, index) => (
+            <Tab key={index}>{t(tabList.label)}</Tab>
+          ))}
         </TabList>
 
         <TabPanels>
-          {tabPanelItems.map(
-            (panel, index) => shouldRenderItem(panel) && panel.component(index),
-          )}
+          {tabPanelItems.map((panel, index) => panel.component(index))}
         </TabPanels>
       </Tabs>
     </Page>

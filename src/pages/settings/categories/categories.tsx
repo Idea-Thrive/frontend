@@ -74,6 +74,7 @@ const Categories: FC = () => {
     try {
       const { status } = await createCategory({
         name: categoryNameInput.value,
+        company_id: companyId,
       });
 
       if (status === STATUS_OK) {
@@ -99,6 +100,8 @@ const Categories: FC = () => {
       setSubmitLoading(false);
     }
   };
+
+  console.log(categories);
 
   return (
     <Accordion w="full" textAlign="center">

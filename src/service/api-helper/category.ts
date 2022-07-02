@@ -28,8 +28,6 @@ export function createCategory({
   return request.post('categories', {
     name,
     description,
-    created_at: Date.now(),
-    updated_at: Date.now(),
   });
 }
 

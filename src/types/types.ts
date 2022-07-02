@@ -7,8 +7,7 @@ export interface Idea {
   title: string;
   category: string;
   description: string;
-  up_vote_count: number;
-  down_vote_count: number;
+  score: number;
   creator_id: string;
   company_id: string;
   created_at: string;

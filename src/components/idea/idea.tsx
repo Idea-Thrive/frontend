@@ -67,9 +67,7 @@ const Idea: FC<IdeaProps> = ({ idea }) => {
         <Box>
           <Heading size="md">
             <HStack spacing={2}>
-              <Text display="inline">
-                {idea.up_vote_count - idea.down_vote_count}
-              </Text>
+              <Text display="inline">{idea.score}</Text>
               <FiStar size={16} color="gold" />
             </HStack>
           </Heading>

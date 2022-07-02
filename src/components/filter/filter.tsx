@@ -39,8 +39,8 @@ const Filter: FC<FilterProps> = () => {
 
   const sortByRating = (list: Array<Idea>) =>
     list.sort((first, second) => {
-      const firstRate = first.up_vote_count - first.down_vote_count;
-      const secondRate = second.up_vote_count - second.down_vote_count;
+      const firstRate = first.score;
+      const secondRate = second.score;
 
       if (firstRate < secondRate) {
         return 1;

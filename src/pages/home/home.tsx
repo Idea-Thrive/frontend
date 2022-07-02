@@ -32,13 +32,7 @@ function Home() {
         category: 'shit',
       });
 
-      dispatch(updateStoreIdeas(data.data));
-      // const {
-      //   data: { data, ok },
-      // } = await getIdeas({});
-      // if (ok) {
-      //   setIdeas(data);
-      // }
+      dispatch(updateStoreIdeas(data));
     } catch (error) {
       toast({
         title: t('anErrorHasOccurred'),

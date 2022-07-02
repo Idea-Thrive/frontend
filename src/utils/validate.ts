@@ -12,3 +12,7 @@ export const isRequired = (value: string): boolean => {
   }
   return value.length > 0 || !!value;
 };
+
+export const isNumber = (value: string | number): boolean => {
+  return /^[0-9]+$/.test(String(value));
+};

@@ -42,6 +42,7 @@ const DashboardDrawer: FC<DashboardDrawerProps> = () => {
   const navigate = useNavigate();
 
   const handleSettingsClick = () => {
+    dispatch(toggleMenu());
     navigate(paths.settings);
   };
 

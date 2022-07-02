@@ -21,7 +21,7 @@ interface IdeaListProps {
 const IdeaList: FC<IdeaListProps> = ({ ideas }) => {
   const textColor = useColorModeValue('black', 'darkGray');
 
-  if (ideas.length === 0) {
+  if (!ideas || ideas?.length === 0) {
     return (
       <Flex p={2} alignItems="center" justifyContent="center" w="full" h="full">
         <VStack spacing={6}>

@@ -36,10 +36,8 @@ const DashboardDrawer: FC<DashboardDrawerProps> = () => {
 
   const { isMenuOpen } = useStateToProps((state: any) => ({
     isMenuOpen: state.app.global.isMenuOpen,
-    // role: state.app?.user?.role,
+    role: state.app?.user?.role,
   }));
-
-  const role = 'employee';
 
   const navigate = useNavigate();
 

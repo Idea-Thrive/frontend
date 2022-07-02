@@ -43,6 +43,14 @@ const keys: Record<string, string> = {
   ownerNationalId: 'کد‌ملی صاحب شرکت',
   addNewCompany: 'اضافه کردن شرکت جدید',
   submitCompany: 'ثبت شرکت',
+  addNewCategory: 'اضافه کردن دسته‌بندی جدید',
+  submitCategory: 'ثبت دسته‌بندی',
+  existingCategories: 'دسته‌بندی‌های موجود',
+  delete: 'پاک کردن',
+  categoryName: 'نام دسته‌بندی',
+  categoryNameIsRequired: 'نام دسته‌بندی الزامی است',
+  companySubmittedSuccessfully: 'شرکت با موفقیت ثبت شد',
+  categorySubmittedSuccessfully: 'دسته‌بندی با موفقیت ثبت شد',
 };
 
 export default keys;

@@ -44,6 +44,14 @@ const keys: Record<string, string> = {
   ownerNationalId: 'Owner national ID',
   addNewCompany: 'Add New Company',
   submitCompany: 'Submit Company',
+  addNewCategory: 'Add New Category',
+  submitCategory: 'Submit category',
+  existingCategories: 'Existing Categories',
+  delete: 'Delete',
+  categoryName: 'Category name',
+  categoryNameIsRequired: 'Category name is required',
+  companySubmittedSuccessfully: 'Company submitted successfully',
+  categorySubmittedSuccessfully: 'Category submitted successfully',
 };
 
 export default keys;

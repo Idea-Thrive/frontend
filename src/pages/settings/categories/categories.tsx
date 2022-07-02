@@ -14,18 +14,24 @@ import {
   AccordionIcon,
   List,
   ListItem,
-  Spinner,
   Text,
   Flex,
+  Skeleton,
 } from '@chakra-ui/react';
 import useInput from 'hooks/use-input';
 import { isRequired } from 'utils/validate';
 import t from 'i18n';
 import { STATUS_OK } from 'constants/';
-import { getAllCategories, createCategory } from 'service/api-helper/category';
+import {
+  getAllCategories,
+  createCategory,
+  deleteCategory,
+} from 'service/api-helper/category';
 import useDidMount from 'hooks/use-did-mount';
 import useStateToProps from 'store/hooks/use-state-to-props';
 import { Category } from 'types/types';
+import { toggleGlobalLoading } from 'store/slices/app-slice/app-slice';
+import { useDispatch } from 'react-redux';
 
 const Categories: FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,6 +42,8 @@ const Categories: FC = () => {
     companyId: state.app?.user?.company_id,
   }));
 
+  const dispatch = useDispatch();
+
   const categoryNameInput = useInput({
     initialValue: '',
     validator: isRequired,
@@ -44,6 +52,7 @@ const Categories: FC = () => {
   });
 
   const initializeAllCategories = async () => {
+    setIsLoading(true);
     try {
       const { data } = await getAllCategories({ companyId });
       setCategories(data);
@@ -59,8 +68,35 @@ const Categories: FC = () => {
 
   const toast = useToast();
 
-  // TODO: implement the logic
-  const handleDeleteCategoryClick = () => {};
+  const handleDeleteCategoryClick = async (id: string) => {
+    dispatch(toggleGlobalLoading());
+
+    try {
+      const { status } = await deleteCategory({ id });
+      if (status === 204) {
+        toast({
+          title: t('categoryDeletedSuccessfully'),
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+          position: 'bottom',
+        });
+
+        await initializeAllCategories();
+      }
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: t('anErrorHasOccurred'),
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+        position: 'bottom',
+      });
+    } finally {
+      dispatch(toggleGlobalLoading());
+    }
+  };
 
   const handleSubmitCategoryClick = async () => {
     const IsCategoryNameValid = categoryNameInput.validate();
@@ -77,7 +113,7 @@ const Categories: FC = () => {
         company_id: companyId,
       });
 
-      if (status === STATUS_OK) {
+      if (status === 201) {
         toast({
           title: t('categorySubmittedSuccessfully'),
           status: 'success',
@@ -87,6 +123,8 @@ const Categories: FC = () => {
         });
 
         categoryNameInput.clear();
+
+        await initializeAllCategories();
       }
     } catch (error: any) {
       toast({
@@ -101,10 +139,8 @@ const Categories: FC = () => {
     }
   };
 
-  console.log(categories);
-
   return (
-    <Accordion w="full" textAlign="center">
+    <Accordion w="full" textAlign="center" allowToggle allowMultiple>
       <AccordionItem>
         <AccordionButton p={4}>
           <Heading size="md">{t('existingCategories')}</Heading>
@@ -113,15 +149,13 @@ const Categories: FC = () => {
 
         <AccordionPanel shadow="md" pb={4}>
           <List textAlign="start">
-            {isLoading ? (
-              <Spinner />
-            ) : (
-              categories.map((category: Category) => (
+            <Skeleton isLoaded={!isLoading}>
+              {categories.map((category: Category) => (
                 <ListItem mb={2} borderRadius="lg" padding={3} border="1px">
                   <Flex alignItems="center" justifyContent="space-between">
                     <Text fontWeight="bold">{category.name}</Text>
                     <Button
-                      onClick={() => handleDeleteCategoryClick()}
+                      onClick={() => handleDeleteCategoryClick(category.id)}
                       variant="solid"
                       backgroundColor="red.500"
                     >
@@ -129,8 +163,8 @@ const Categories: FC = () => {
                     </Button>
                   </Flex>
                 </ListItem>
-              ))
-            )}
+              ))}
+            </Skeleton>
           </List>
         </AccordionPanel>
       </AccordionItem>

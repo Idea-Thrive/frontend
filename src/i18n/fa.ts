@@ -55,6 +55,7 @@ const keys: Record<string, string> = {
   addNewCriteria: 'اضافه‌کردن شاخص جدید',
   existingCompanies: 'شرکت‌های موجود',
   companyDeletedSuccessfully: 'شرکت با موفقیت حذف شد',
+  categoryDeletedSuccessfully: 'دسته‌بندی با موفقیت حذف شد',
 };
 
 export default keys;

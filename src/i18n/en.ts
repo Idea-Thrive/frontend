@@ -56,6 +56,7 @@ const keys: Record<string, string> = {
   addNewCriteria: 'Add New Critera',
   existingCompanies: 'Existing Companies',
   companyDeletedSuccessfully: 'Company deleted successfully',
+  categoryDeletedSuccessfully: 'Category deleted successfully',
 };
 
 export default keys;

@@ -6,6 +6,8 @@ type GetAllCategoriesParams = {
 
 type CreateCategory = {
   name: string;
+  color?: string;
+  company_id: string;
 };
 
 type DeleteCategory = {
@@ -18,10 +20,15 @@ export function getAllCategories({
   return request.get('categories', { params: { company_id: companyId } });
 }
 
-export function createCategory({ name }: CreateCategory): Promise<any> {
+export function createCategory({
+  name,
+  color = 'blue',
+  company_id,
+}: CreateCategory): Promise<any> {
   return request.post('categories', {
     name,
-    description: '',
+    color,
+    company_id,
   });
 }
 

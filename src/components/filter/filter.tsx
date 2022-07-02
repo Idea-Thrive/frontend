@@ -13,7 +13,6 @@ import {
 import { useDispatch } from 'react-redux';
 import { updateFilteredIdeas as updateFilteredIdeasToStore } from 'store/slices/app-slice';
 import useStateToProps from 'store/hooks/use-state-to-props';
-import useDidMount from 'hooks/use-did-mount';
 import { getAllCategories } from 'service/api-helper/category';
 import { Category, Idea, SortingOption, Status } from 'types/types';
 
@@ -136,9 +135,11 @@ const Filter: FC<FilterProps> = () => {
     }
   };
 
-  useDidMount(() => {
-    updateCategories();
-  });
+  useEffect(() => {
+    if (companyId) {
+      updateCategories();
+    }
+  }, [companyId]);
 
   const shouldRenderFilterByCategory = () =>
     categories.length !== EMPTY_ARRAY_SIZE;

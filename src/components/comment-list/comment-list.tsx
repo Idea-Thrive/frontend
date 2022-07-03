@@ -9,8 +9,6 @@ interface CommentListProps {
 }
 
 const CommentList: FC<CommentListProps> = ({ comments }) => {
-  console.log(comments);
-
   const textColor = useColorModeValue('gray.600', 'whiteAlpha.700');
 
   const renderEmptyList = () => (

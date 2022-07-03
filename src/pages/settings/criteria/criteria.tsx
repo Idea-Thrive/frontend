@@ -1,18 +1,5 @@
 import { FC, useState } from 'react';
-import {
-  Input,
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  Heading,
-  Button,
-  useToast,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-} from '@chakra-ui/react';
+import { Accordion } from '@chakra-ui/react';
 import useInput from 'hooks/use-input';
 import { isRequired, isNumber } from 'utils/validate';
 import t from 'i18n';
@@ -20,7 +7,6 @@ import { submitCompany } from 'service/api-helper/company';
 import { STATUS_OK } from 'constants/';
 
 const Criteria: FC = () => {
-
   const ownerFirstNameInput = useInput({
     initialValue: '',
     validator: isRequired,
@@ -28,10 +14,9 @@ const Criteria: FC = () => {
     clearErrorOnChange: true,
   });
 
-
   return (
-    <Accordion w="full" textAlign="center">
-    {/* <AccordionItem>
+    <Accordion w="full" textAlign="center" allowToggle>
+      {/* <AccordionItem>
       <AccordionButton p={4}>
         <Heading size="md">{t('addNewCriteria')}</Heading>
         <AccordionIcon />
@@ -99,8 +84,8 @@ const Criteria: FC = () => {
         </Button>
       </AccordionPanel>
     </AccordionItem> */}
-  </Accordion>
-  )
+    </Accordion>
+  );
 };
 
 export default Criteria;

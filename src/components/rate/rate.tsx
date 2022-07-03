@@ -1,31 +1,12 @@
 import { FC, useState } from 'react';
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Button,
-  Heading,
-  Textarea,
-  Box,
   Text,
-  VStack,
   Slider,
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-  SliderMark,
   HStack,
 } from '@chakra-ui/react';
-import { Criteria } from 'types/types';
-import t from 'i18n';
-import useStateToProps from 'store/hooks/use-state-to-props';
-import useInput from 'hooks/use-input';
-import Header from 'components/header/header';
-import { isRequired } from 'utils/validate';
 
 interface RateProps {
   onChange: (value: number) => void;

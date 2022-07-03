@@ -77,6 +77,8 @@ const keys: Record<string, string> = {
   submitScore: 'امتیاز دهید',
   submitComment: 'ثبت دیدگاه',
   commentSubmittedSuccessfully: 'دیدگاه با موفقیت ثبت شد',
+  deleteIdea: 'پاک کردن ایده',
+  ideaDeletedSuccessfully: 'ایده با موفقیت حذف شد',
 };
 
 export default keys;

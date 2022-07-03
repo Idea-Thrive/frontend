@@ -8,6 +8,10 @@ type CreateIdeaParam = {
   company_id: string;
 };
 
+type DeleteIdeaParams = {
+  ideaId: string;
+};
+
 export function createIdea({
   title,
   category_id,
@@ -22,4 +26,8 @@ export function createIdea({
     creator_id,
     company_id,
   });
+}
+
+export function deleteIdea({ ideaId }: DeleteIdeaParams): Promise<any> {
+  return request.delete(`ideas/${ideaId}`);
 }

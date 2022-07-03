@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import useLocationState from 'hooks/use-location-state';
 import {
   Box,
@@ -16,7 +16,6 @@ import {
   Spinner,
 } from '@chakra-ui/react';
 import t, { getCurrentLanguage } from 'i18n';
-import { Category } from 'types';
 import Header from 'components/header';
 import Page from 'components/page';
 import { getComments } from 'service/api-helper/comment';
@@ -28,15 +27,25 @@ import { FiStar } from 'react-icons/fi';
 import { BiCommentDetail } from 'react-icons/bi';
 import RateModal from 'components/rate-modal';
 import { getAllCriteria } from 'service/api-helper/criteria';
+import useStateToProps from 'store/hooks/use-state-to-props';
+import { deleteIdea } from 'service/api-helper/idea';
+import { useNavigate } from 'react-router';
+import paths from 'router/paths';
 
 const IdeaDetails: FC = () => {
   const toast = useToast();
+  const navigate = useNavigate();
   const textColor = useColorModeValue('gray.600', 'whiteAlpha.700');
   const [commentLoading, setCommentLoading] = useState(true);
   const [comments, setComments] = useState<Array<Comment>>([]);
   const [rateModalVisibility, setRateModalVisibility] = useState(false);
   const [criteria, setCriteria] = useState<Array<Criteria>>([]);
   const [criteriaLoading, setCriteriaLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+
+  const { userId } = useStateToProps((state: any) => ({
+    userId: state.app.user?.id,
+  }));
 
   const { idea } = useLocationState<any>();
   const {
@@ -102,7 +111,6 @@ const IdeaDetails: FC = () => {
   const renderCreationTime = (date: any) => {
     const { locale } = getCurrentLanguage();
     const formatted = new Intl.DateTimeFormat(locale).format(new Date());
-    console.log(formatted);
     return (
       <Box w="full" textColor={textColor}>
         <Text display="inline">{t('createdAt')}</Text>
@@ -120,6 +128,38 @@ const IdeaDetails: FC = () => {
   const handleRateSubmit = () => {
     initializeComments();
     setRateModalVisibility(false);
+  };
+
+  const shouldRenderDeleteButton = () => creator_id === userId;
+
+  const handleDeleteClick = async () => {
+    setDeleteLoading(true);
+
+    try {
+      const { status } = await deleteIdea({ ideaId: id });
+      if (status === 204) {
+        toast({
+          title: t('ideaDeletedSuccessfully'),
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+          position: 'bottom',
+        });
+
+        navigate(paths.home);
+      }
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: t('anErrorHasOccurred'),
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+        position: 'bottom',
+      });
+    } finally {
+      setDeleteLoading(false);
+    }
   };
 
   return (
@@ -158,17 +198,32 @@ const IdeaDetails: FC = () => {
         {renderCreationTime(created_at)}
 
         <Flex w="full" alignItems="center" justifyContent="space-between">
-          <Box w="full" mx={4}>
-            {criteriaLoading ? (
-              <Spinner />
-            ) : (
-              <BiCommentDetail
-                cursor="pointer"
-                size={24}
-                onClick={handleRateClick}
-              />
+          <HStack>
+            <Flex justifyContent="center" w="full">
+              {criteriaLoading ? (
+                <Spinner />
+              ) : (
+                <BiCommentDetail
+                  cursor="pointer"
+                  size={24}
+                  onClick={handleRateClick}
+                />
+              )}
+            </Flex>
+
+            {shouldRenderDeleteButton() && (
+              <Button
+                isLoading={deleteLoading}
+                onClick={handleDeleteClick}
+                px={10}
+                variant="ghost"
+                color="red.500"
+              >
+                {t('deleteIdea')}
+              </Button>
             )}
-          </Box>
+          </HStack>
+
           <HStack spacing={2}>
             <Text fontSize="xl" display="inline">
               {score}

@@ -78,6 +78,8 @@ const keys: Record<string, string> = {
   submitScore: 'Submit Score',
   submitComment: 'Submit Comment',
   commentSubmittedSuccessfully: 'Comment submitted successfully',
+  deleteIdea: 'Delete Idea',
+  ideaDeletedSuccessfully: 'Idea deleted successfully',
 };
 
 export default keys;

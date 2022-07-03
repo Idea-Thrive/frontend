@@ -2,9 +2,9 @@ import request from '../request';
 
 type GetIdeasParams = {
   companyId: number;
-  category: string;
-  size: number;
-  offset: number;
+  category?: string;
+  size?: number;
+  offset?: number;
 };
 
 export function getIdeas({

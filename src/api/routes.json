@@ -1,8 +1,0 @@
-{
-  "/api/*": "/$1",
-  "/login/": "/login",
-  "/users/info": "/info",
-  "/categories/*": "/categories",
-  "/routes/*": "/comments",
-  "/criteria/*": "/criteria"
-}

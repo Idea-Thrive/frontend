@@ -1,96 +1,192 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import useLocationState from 'hooks/use-location-state';
 import {
   Box,
   VStack,
   HStack,
   Flex,
-  useColorModeValue,
   Heading,
   Text,
   Badge,
   Button,
   Divider,
+  useColorModeValue,
+  Skeleton,
+  useToast,
+  Spinner,
 } from '@chakra-ui/react';
-import t from 'i18n';
+import t, { getCurrentLanguage } from 'i18n';
 import { Category } from 'types';
-import { FiThumbsUp, FiThumbsDown } from 'react-icons/fi';
+import Header from 'components/header';
+import Page from 'components/page';
+import { getComments } from 'service/api-helper/comment';
+import useDidMount from 'hooks/use-did-mount';
+import { STATUS_OK } from 'constants/constants';
+import { Comment, Criteria } from 'types/types';
+import CommentList from 'components/comment-list';
+import { FiStar } from 'react-icons/fi';
 import { BiCommentDetail } from 'react-icons/bi';
+import RateModal from 'components/rate-modal';
+import { getAllCriteria } from 'service/api-helper/criteria';
 
 const IdeaDetails: FC = () => {
+  const toast = useToast();
+  const textColor = useColorModeValue('gray.600', 'whiteAlpha.700');
+  const [commentLoading, setCommentLoading] = useState(true);
+  const [comments, setComments] = useState<Array<Comment>>([]);
+  const [rateModalVisibility, setRateModalVisibility] = useState(false);
+  const [criteria, setCriteria] = useState<Array<Criteria>>([]);
+  const [criteriaLoading, setCriteriaLoading] = useState(false);
+
   const { idea } = useLocationState<any>();
-  const { title, creator, description, upVotes, downVotes, category, id } =
-    idea;
+  const {
+    title,
+    category,
+    description,
+    score,
+    creator_id,
+    created_at,
+    id,
+    category_id,
+  } = idea;
 
-  const borderColor = useColorModeValue('gray.200', 'whiteAlpha.300');
+  const initializeComments = async () => {
+    try {
+      const { data, status } = await getComments({ idea_id: id });
 
-  const handleRateClick = () => {
-    // TODO: Open a modal and submit the rating
-    console.log('rate');
+      if (status === STATUS_OK) {
+        setComments(data);
+        setCommentLoading(false);
+      }
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: t('anErrorHasOccurred'),
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+        position: 'bottom',
+      });
+    }
+  };
+
+  useDidMount(() => {
+    initializeComments();
+  });
+
+  const handleRateClick = async () => {
+    setCriteriaLoading(true);
+    try {
+      const { status, data } = await getAllCriteria({
+        categoryId: category_id,
+      });
+
+      if (status === STATUS_OK) {
+        setCriteria(data);
+        setRateModalVisibility(true);
+      }
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: t('anErrorHasOccurred'),
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+        position: 'bottom',
+      });
+    } finally {
+      setCriteriaLoading(false);
+    }
+  };
+
+  const renderCreationTime = (date: any) => {
+    const { locale } = getCurrentLanguage();
+    const formatted = new Intl.DateTimeFormat(locale).format(new Date());
+    console.log(formatted);
+    return (
+      <Box w="full" textColor={textColor}>
+        <Text display="inline">{t('createdAt')}</Text>
+        <Text fontWeight="bold" display="inline">
+          {formatted}
+        </Text>
+      </Box>
+    );
+  };
+
+  const handleRateModalVisibilityChange = () => {
+    setRateModalVisibility(false);
+  };
+
+  const handleRateSubmit = () => {
+    initializeComments();
+    setRateModalVisibility(false);
   };
 
   return (
-    <VStack
-      my={10}
-      w="full"
-      border="2px"
-      borderColor={borderColor}
-      borderRadius="md"
-      p={3}
-      spacing={5}
-      shadow="md"
-    >
-      <Flex alignItems="center" w="full" justifyContent="space-between">
-        <HStack alignItems="center" spacing={4}>
-          <Heading size="md">{idea.title}</Heading>
-          <Text>{creator}</Text>
-        </HStack>
+    <Page>
+      <Header />
+      <RateModal
+        visibility={rateModalVisibility}
+        onVisibilityChange={handleRateModalVisibilityChange}
+        criteria={criteria}
+        onSubmit={handleRateSubmit}
+        ideaId={id}
+      />
+      <VStack w="full" borderRadius="md" spacing={5} shadow="md" py={2} px={4}>
+        <Flex alignItems="center" w="full" justifyContent="space-between">
+          <HStack alignItems="center" spacing={4}>
+            <Heading size="md">{title}</Heading>
+            <Text>{creator_id}</Text>
+          </HStack>
 
-        <Box>
-          <Badge colorScheme={category.color}>{category.name}</Badge>
+          <Box>
+            <Badge colorScheme="linkedin">{category}</Badge>
+          </Box>
+        </Flex>
+        <Box w="full">
+          <Text
+            w="50%"
+            textOverflow="ellipsis"
+            overflow="hidden"
+            display="inline-block"
+            whiteSpace="nowrap"
+          >
+            {description}
+          </Text>
         </Box>
-      </Flex>
-      <Box w="full">
-        <Text
-          w="50%"
-          textOverflow="ellipsis"
-          overflow="hidden"
-          display="inline-block"
-          whiteSpace="nowrap"
-        >
-          {idea.description}
-        </Text>
-      </Box>
 
-      <Box w="full" display="flex" justifyContent="flex-end">
-        <HStack spacing={4}>
-          <Button
-            variant="outline"
-            colorScheme="green"
-            onClick={handleRateClick}
-            display="flex"
-          >
-            <FiThumbsUp />
-            <Text mx={2}>{idea.upVotes}</Text>
-          </Button>
-          <Button
-            variant="outline"
-            colorScheme="red"
-            onClick={handleRateClick}
-            display="flex"
-          >
-            <FiThumbsDown />
-            <Text mx={2}>{idea.downVotes}</Text>
-          </Button>
-        </HStack>
-      </Box>
-      <Divider />
-      <VStack>
-        <Heading>{t('comments')}</Heading>
-        {/* TODO: Implement comments */}
-        <VStack>comments</VStack>
+        {renderCreationTime(created_at)}
+
+        <Flex w="full" alignItems="center" justifyContent="space-between">
+          <Box w="full" mx={4}>
+            {criteriaLoading ? (
+              <Spinner />
+            ) : (
+              <BiCommentDetail
+                cursor="pointer"
+                size={24}
+                onClick={handleRateClick}
+              />
+            )}
+          </Box>
+          <HStack spacing={2}>
+            <Text fontSize="xl" display="inline">
+              {score}
+            </Text>
+            <FiStar size={24} color="gold" />
+          </HStack>
+        </Flex>
+
+        <Divider />
+        <VStack w="full" spacing={6}>
+          <Heading size="lg">{t('comments')}</Heading>
+
+          <Skeleton w="full" isLoaded={!commentLoading}>
+            <CommentList comments={comments} />
+          </Skeleton>
+        </VStack>
       </VStack>
-    </VStack>
+    </Page>
   );
 };
 

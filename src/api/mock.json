@@ -118,5 +118,48 @@
       "created_at": "2022-06-05T17:46:41.36447384+04:30",
       "updated_at": "2022-06-05T17:46:41.36447389+04:30"
     }
+  ],
+  "comments": [
+    {
+      "score": 2,
+      "description": "yes",
+      "user_id": 123123,
+      "company_id": 2352354,
+      "idea_id": 423534543,
+      "created_at": "2022-06-05T18:43:09.082217618+04:30",
+      "updated_at": "2022-06-05T18:43:09.082217669+04:30"
+    },
+    {
+      "score": 2,
+      "description": "yes",
+      "user_id": 123123,
+      "company_id": 2352354,
+      "idea_id": 423534543,
+      "created_at": "2022-06-05T18:43:09.082217618+04:30",
+      "updated_at": "2022-06-05T18:43:09.082217669+04:30"
+    },
+    {
+      "score": 2,
+      "description": "yes",
+      "user_id": 123123,
+      "company_id": 2352354,
+      "idea_id": 423534543,
+      "created_at": "2022-06-05T18:43:09.082217618+04:30",
+      "updated_at": "2022-06-05T18:43:09.082217669+04:30"
+    }
+  ],
+  "criteria": [
+    {
+      "name": "c-1",
+      "category_id": "1"
+    },
+    {
+      "name": "c-2",
+      "category_id": "1"
+    },
+    {
+      "name": "c-3",
+      "category_id": "1"
+    }
   ]
 }

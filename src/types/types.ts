@@ -39,3 +39,18 @@ export type Company = {
   created_at: string;
   updated_at: string;
 };
+
+export type Comment = {
+  company_id: string;
+  created_at: string;
+  description: string;
+  id: string;
+  score: number;
+  updated_at: string;
+  user_id: string;
+};
+
+export type Criteria = {
+  name: string;
+  category_id: string;
+};

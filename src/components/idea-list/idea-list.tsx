@@ -3,7 +3,6 @@ import {
   List,
   ListItem,
   Image,
-  Box,
   Flex,
   Text,
   VStack,

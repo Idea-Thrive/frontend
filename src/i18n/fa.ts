@@ -72,6 +72,11 @@ const keys: Record<string, string> = {
   descriptionPlaceholder: 'توضیح مختصری از ایده خود بنویسید',
   submitIdea: 'ثبت ایده',
   ideaSubmittedSuccessfully: 'ایده با موفقیت ثبت شد',
+  noCommentYet: 'هنوز هیچ نظری ثبت نشده است',
+  yourRate: 'دیدگاه شما',
+  submitScore: 'امتیاز دهید',
+  submitComment: 'ثبت دیدگاه',
+  commentSubmittedSuccessfully: 'دیدگاه با موفقیت ثبت شد',
 };
 
 export default keys;

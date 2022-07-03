@@ -73,6 +73,11 @@ const keys: Record<string, string> = {
   descriptionPlaceholder: 'Write a short description about your idea',
   submitIdea: 'Submit Idea',
   ideaSubmittedSuccessfully: 'Idea submitted successfully',
+  noCommentYet: 'There is no comment yet',
+  yourRate: 'Your Rate',
+  submitScore: 'Submit Score',
+  submitComment: 'Submit Comment',
+  commentSubmittedSuccessfully: 'Comment submitted successfully',
 };
 
 export default keys;

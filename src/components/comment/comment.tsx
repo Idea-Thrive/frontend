@@ -7,6 +7,7 @@ import {
   VStack,
   Text,
   Flex,
+  Divider,
 } from '@chakra-ui/react';
 import { FiStar } from 'react-icons/fi';
 
@@ -33,6 +34,7 @@ const Comment: FC<CommentPros> = ({ comment }) => {
           <Text>{comment.created_at}</Text>
         </Box>
       </VStack>
+      <Divider />
     </Box>
   );
 };

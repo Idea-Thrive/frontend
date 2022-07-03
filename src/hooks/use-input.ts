@@ -9,7 +9,7 @@ type useInputParams = {
 
 type useInputReturn = {
   value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   error: string | null;
   validate: () => boolean;
   clear: () => void;
@@ -24,7 +24,9 @@ function useInput({
   const [value, setValue] = useState<string>(initialValue);
   const [error, setError] = useState<string | null>(null);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { value } = e.target;
 
     setValue(value);

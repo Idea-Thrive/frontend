@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Comment } from 'types/types';
-import { Box, Heading, useColorModeValue } from '@chakra-ui/react';
+import { Box, Heading, useColorModeValue, VStack } from '@chakra-ui/react';
 import t from 'i18n';
 import CommentComponent from 'components/comment';
 
@@ -29,9 +29,13 @@ const CommentList: FC<CommentListProps> = ({ comments }) => {
 
   return (
     <Box mb={3} w="full">
-      {comments.map((comment: Comment) => (
-        <CommentComponent comment={comment} key={comment.id} />
-      ))}
+      <VStack spacing={8}>
+        {comments.map((comment: Comment) => (
+          <>
+            <CommentComponent comment={comment} key={comment.id} />
+          </>
+        ))}
+      </VStack>
     </Box>
   );
 };
